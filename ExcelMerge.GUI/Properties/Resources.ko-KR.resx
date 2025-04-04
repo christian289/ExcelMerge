@@ -542,10 +542,22 @@
   <data name="Word_Chinese" xml:space="preserve">
     <value>중국어</value>
   </data>
+  <data name="Word_Korean" xml:space="preserve">
+    <value>한국어</value>
+  </data>
+  <data name="GroupBox_KeyColumnSetting" xml:space="preserve">
+    <value>Key Column 설정</value>
+  </data>
+  <data name="Label_ProcessStartKeyColumnMode" xml:space="preserve">
+    <value>프로그램 시작 시 Key Column 모드로 동작</value>
+  </data>
+  <data name="Label_KeyColumnName" xml:space="preserve">
+    <value>Key Column 이름</value>
+  </data>
   <data name="Label_RowHeight" xml:space="preserve">
     <value>행 높이</value>
   </data>
-  <data name="Word_Korean" xml:space="preserve">
-    <value>한국어</value>
+  <data name="Label_FirstRowIsHeader" xml:space="preserve">
+    <value>첫 행 건너뛰기</value>
   </data>
 </root>

@@ -11,6 +11,8 @@
         Title="{x:Static props:Resources.Title_GeneralSettingWindow}"
         Width="800"
         Height="640"
+        d:DesignHeight="1500"
+        d:DesignWidth="800"
         Icon="/ExcelMerge.GUI;component/app.ico"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
@@ -57,6 +59,23 @@
                                       VerticalAlignment="Center"
                                       IsChecked="{Binding Setting.SkipFirstBlankColumns}" />
                         </Grid>
+
+                        <!--  20250404 첫행이 Column Name으로 들어가서 UX 적 Bug라고 여겨질 소지가 있음.  -->
+                        <!--  첫 행을 제거하고 랜더링 해봤더니 Column Name이 사라지는 문제 발견  -->
+                        <!--  0번 Row를 Column Name으로 쓰고 있는 것 같다.  -->
+                        <!--  FastGridControl을 수정해야하는 문제  -->
+                        <!--<Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30*" />
+                                <ColumnDefinition Width="70*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_FirstRowIsHeader}" />
+                            <CheckBox Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Setting.FirstRowIsHeader}" />
+                        </Grid>-->
 
                         <Grid Margin="3">
                             <Grid.ColumnDefinitions>
@@ -518,7 +537,7 @@
                     </StackPanel>
                 </GroupBox>
 
-                <GroupBox Margin="3" Header="키 컬럼 설정">
+                <GroupBox Margin="3" Header="{x:Static props:Resources.GroupBox_KeyColumnSetting}">
                     <StackPanel Orientation="Vertical">
                         <Grid Margin="3">
                             <Grid.ColumnDefinitions>
@@ -527,7 +546,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0"
                                    VerticalAlignment="Center"
-                                   Content="기본적으로 키 컬럼 사용" />
+                                   Content="{x:Static props:Resources.Label_ProcessStartKeyColumnMode}" />
                             <CheckBox Grid.Column="1"
                                       VerticalAlignment="Center"
                                       IsChecked="{Binding Setting.UseKeyColumnByDefault}" />
@@ -540,7 +559,7 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0"
                                    VerticalAlignment="Center"
-                                   Content="기본 키 컬럼 이름" />
+                                   Content="{x:Static props:Resources.Label_KeyColumnName}" />
                             <TextBox Grid.Column="1" Text="{Binding Setting.DefaultKeyColumnName}" />
                         </Grid>
                     </StackPanel>

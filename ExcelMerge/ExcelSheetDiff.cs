@@ -30,7 +30,7 @@ namespace ExcelMerge
 
         public ExcelRowDiff CreateRow()
         {
-            var row = new ExcelRowDiff(Rows.Any() ? Rows.Keys.Last() + 1 : 0);
+            var row = new ExcelRowDiff(Rows.Count != 0 ? Rows.Keys.Last() + 1 : 0);
             Rows.Add(row.Index, row);
 
             return row;

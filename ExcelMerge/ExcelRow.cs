@@ -41,15 +41,9 @@ namespace ExcelMerge
             return GetHashCode() == other.GetHashCode();
         }
 
-        public bool IsBlank()
-        {
-            return Cells.All(c => string.IsNullOrEmpty(c.Value));
-        }
+        public bool IsBlank() => Cells.All(c => string.IsNullOrEmpty(c.Value));
 
-        public void UpdateCells(IEnumerable<ExcelCell> cells)
-        {
-            Cells = cells.ToList();
-        }
+        public void UpdateCells(IEnumerable<ExcelCell> cells) => Cells = cells.ToList();
     }
 
     internal class RowComparer : IEqualityComparer<ExcelRow>

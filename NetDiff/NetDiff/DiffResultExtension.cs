@@ -17,13 +17,15 @@ namespace NetDiff
         }
 
         public static IEnumerable<DiffResult<T>> Optimize<T>(
-            this IEnumerable<DiffResult<T>> self, IEqualityComparer<T> compare = null)
+            this IEnumerable<DiffResult<T>> self,
+            IEqualityComparer<T> compare = null)
         {
-            return DiffUtil.Optimaize(self, compare);
+            return DiffUtil.Optimize(self, compare);
         }
 
         public static IEnumerable<DiffResult<T>> Order<T>(
-            this IEnumerable<DiffResult<T>> self, DiffOrderType orderType)
+            this IEnumerable<DiffResult<T>> self,
+            DiffOrderType orderType)
         {
             return DiffUtil.Order(self, orderType);
         }

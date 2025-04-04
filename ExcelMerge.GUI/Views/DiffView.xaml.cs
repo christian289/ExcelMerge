@@ -23,7 +23,7 @@ namespace ExcelMerge.GUI.Views
 {
     public partial class DiffView : UserControl
     {
-        private ExcelSheetDiffConfig diffConfig = new ExcelSheetDiffConfig();
+        private ExcelSheetDiffConfig diffConfig = new();
         private IUnityContainer container;
         private const string srcKey = "src";
         private const string dstKey = "dst";
@@ -157,10 +157,11 @@ namespace ExcelMerge.GUI.Views
 
         private ExcelSheetDiffConfig CreateDiffConfig(FileSetting fileSetting, bool isStartup)
         {
-            var config = new ExcelSheetDiffConfig();
-
-            config.SrcSheetIndex = SrcSheetCombobox.SelectedIndex;
-            config.DstSheetIndex = DstSheetCombobox.SelectedIndex;
+            var config = new ExcelSheetDiffConfig
+            {
+                SrcSheetIndex = SrcSheetCombobox.SelectedIndex,
+                DstSheetIndex = DstSheetCombobox.SelectedIndex,
+            };
 
             var viewModel = GetViewModel();
             if (viewModel != null)

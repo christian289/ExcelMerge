@@ -39,10 +39,7 @@ namespace NetDiff
             return hash;
         }
 
-        public bool Equals(Point other)
-        {
-            return X == other.X && Y == other.Y;
-        }
+        public bool Equals(Point other) => X == other.X && Y == other.Y;
 
         public override string ToString()
         {
@@ -88,10 +85,10 @@ namespace NetDiff
 
         public List<Point> CalculatePath(DiffOption<T> option)
         {
-            if (!seq1.Any())
+            if (seq1.Length == 0)
                 return Enumerable.Range(0, seq2.Length + 1).Select(i => new Point(0, i)).ToList();
 
-            if (!seq2.Any())
+            if (seq2.Length == 0)
                 return Enumerable.Range(0, seq1.Length + 1).Select(i => new Point(i, 0)).ToList();
 
             this.option = option;
@@ -106,7 +103,7 @@ namespace NetDiff
         private void Initialize()
         {
             farthestPoints = new int?[seq1.Length + seq2.Length + 1];
-            heads = new List<Node>();
+            heads = [];
         }
 
         private void BeginCalculatePath()
@@ -159,21 +156,14 @@ namespace NetDiff
 
             foreach (var head in heads)
             {
-                Node rightHead;
-                if (TryCreateHead(head, Direction.Right, out rightHead))
-                {
+                if (TryCreateHead(head, Direction.Right, out Node rightHead))
                     updated.Add(rightHead);
-                }
 
-                Node bottomHead;
-                if (TryCreateHead(head, Direction.Bottom, out bottomHead))
-                {
+                if (TryCreateHead(head, Direction.Bottom, out Node bottomHead))
                     updated.Add(bottomHead);
-                }
             }
 
             heads = updated;
-
             Snake();
         }
 
@@ -198,8 +188,7 @@ namespace NetDiff
             Node newHead = null;
             while (true)
             {
-                Node tmp;
-                if (TryCreateHead(newHead ?? head, Direction.Diagonal, out tmp))
+                if (TryCreateHead(newHead ?? head, Direction.Diagonal, out Node tmp))
                     newHead = tmp;
                 else
                     break;
@@ -216,8 +205,10 @@ namespace NetDiff
             if (!CanCreateHead(head.Point, direction, newPoint))
                 return false;
 
-            newHead = new Node(newPoint);
-            newHead.Parent = head;
+            newHead = new Node(newPoint)
+            {
+                Parent = head
+            };
 
             isEnd |= newHead.Point.Equals(endpoint);
 
@@ -242,24 +233,20 @@ namespace NetDiff
             return UpdateFarthestPoint(nextPoint);
         }
 
-        private Point GetPoint(Point currentPoint, Direction direction)
+        private Point GetPoint(Point currentPoint, Direction direction) => direction switch
         {
-            switch (direction)
-            {
-                case Direction.Right:
-                    return new Point(currentPoint.X + 1, currentPoint.Y);
-                case Direction.Bottom:
-                    return new Point(currentPoint.X, currentPoint.Y + 1);
-                case Direction.Diagonal:
-                    return new Point(currentPoint.X + 1, currentPoint.Y + 1);
-            }
-
-            throw new ArgumentException();
-        }
+            Direction.Right => new Point(currentPoint.X + 1, currentPoint.Y),
+            Direction.Bottom => new Point(currentPoint.X, currentPoint.Y + 1),
+            Direction.Diagonal => new Point(currentPoint.X + 1, currentPoint.Y + 1),
+            _ => throw new ArgumentException(),
+        };
 
         private bool InRange(Point point)
         {
-            return point.X >= 0 && point.Y >= 0 && point.X <= endpoint.X && point.Y <= endpoint.Y;
+            return point.X >= 0 &&
+                point.Y >= 0 &&
+                point.X <= endpoint.X &&
+                point.Y <= endpoint.Y;
         }
 
         private bool UpdateFarthestPoint(Point point)

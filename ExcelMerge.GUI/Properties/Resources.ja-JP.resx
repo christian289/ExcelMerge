@@ -536,10 +536,22 @@
   <data name="Word_Chinese" xml:space="preserve">
     <value>中国語</value>
   </data>
+  <data name="Word_Korean" xml:space="preserve">
+    <value>韓國語</value>
+  </data>
+  <data name="GroupBox_KeyColumnSetting" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label_ProcessStartKeyColumnMode" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label_KeyColumnName" xml:space="preserve">
+    <value />
+  </data>
   <data name="Label_RowHeight" xml:space="preserve">
     <value>行の高さ</value>
   </data>
-  <data name="Word_Korean" xml:space="preserve">
-    <value>韓國語</value>
+  <data name="Label_FirstRowIsHeader" xml:space="preserve">
+    <value />
   </data>
 </root>

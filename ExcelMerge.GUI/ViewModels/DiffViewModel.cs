@@ -144,8 +144,7 @@ namespace ExcelMerge.GUI.ViewModels
             private set { SetProperty(ref description, value); }
         }
 
-        private ObservableCollection<ExcelSheetDiffInfo> sheetDiffInfoList 
-            = new ObservableCollection<ExcelSheetDiffInfo>();
+        private ObservableCollection<ExcelSheetDiffInfo> sheetDiffInfoList = [];
         public ObservableCollection<ExcelSheetDiffInfo> SheetDiffInfoList
         {
             get { return sheetDiffInfoList; }
@@ -199,8 +198,7 @@ namespace ExcelMerge.GUI.ViewModels
         {
             if (e.PropertyName == nameof(SrcPath))
             {
-                var vm = sender as MainWindowViewModel;
-                if (vm != null)
+                if (sender is MainWindowViewModel vm)
                 {
                     var prop = typeof(MainWindowViewModel).GetProperties().FirstOrDefault(p => p.Name == e.PropertyName);
                     if (prop != null)
@@ -211,8 +209,7 @@ namespace ExcelMerge.GUI.ViewModels
             }
             else if (e.PropertyName == nameof(DstPath))
             {
-                var vm = sender as MainWindowViewModel;
-                if (vm != null)
+                if (sender is MainWindowViewModel vm)
                 {
                     var prop = typeof(MainWindowViewModel).GetProperties().FirstOrDefault(p => p.Name == e.PropertyName);
                     if (prop != null)
@@ -225,12 +222,10 @@ namespace ExcelMerge.GUI.ViewModels
 
         private void DragDrop(DragEventArgs e)
         {
-            var paths = e.Data.GetData(DataFormats.FileDrop) as string[];
-            if (paths == null || !paths.Any())
+            if (e.Data.GetData(DataFormats.FileDrop) is not string[] paths || paths.Length == 0)
                 return;
 
-            var target = e.Source as FrameworkElement;
-            if (target == null)
+            if (e.Source is not FrameworkElement target)
                 return;
 
             OnDragDrop(paths, target);

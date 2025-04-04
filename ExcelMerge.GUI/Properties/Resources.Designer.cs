@@ -266,7 +266,16 @@ namespace ExcelMerge.GUI.Properties {
                 return ResourceManager.GetString("GroupBox_DisplayFormat", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   查找类似 Key Column Setting 的本地化字符串。
+        /// </summary>
+        public static string GroupBox_KeyColumnSetting {
+            get {
+                return ResourceManager.GetString("GroupBox_KeyColumnSetting", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   查找类似 Log Format 的本地化字符串。
         /// </summary>
@@ -374,7 +383,16 @@ namespace ExcelMerge.GUI.Properties {
                 return ResourceManager.GetString("Label_CompareSheetName", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   查找类似 First Row Is Header 的本地化字符串。
+        /// </summary>
+        public static string Label_FirstRowIsHeader {
+            get {
+                return ResourceManager.GetString("Label_FirstRowIsHeader", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   查找类似 Fit Cell Height 的本地化字符串。
         /// </summary>
@@ -401,7 +419,16 @@ namespace ExcelMerge.GUI.Properties {
                 return ResourceManager.GetString("Label_IgnoreFileSetting", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   查找类似 Key Column Name 的本地化字符串。
+        /// </summary>
+        public static string Label_KeyColumnName {
+            get             {
+                return ResourceManager.GetString("Label_KeyColumnName", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   查找类似 Modified Cell Log Format 的本地化字符串。
         /// </summary>
@@ -500,7 +527,16 @@ namespace ExcelMerge.GUI.Properties {
                 return ResourceManager.GetString("Label_NotifyEqual", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   查找类似 Process Start Key Column Mode 的本地化字符串。
+        /// </summary>
+        public static string Label_ProcessStartKeyColumnMode {
+            get             {
+                return ResourceManager.GetString("Label_ProcessStartKeyColumnMode", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   查找类似 Removed Color 的本地化字符串。
         /// </summary>

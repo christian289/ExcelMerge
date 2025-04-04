@@ -16,8 +16,8 @@ namespace NetDiff
             if (seq1 == null || seq2 == null || (!seq1.Any() && !seq2.Any()))
                 return Enumerable.Empty<DiffResult<T>>();
 
-            var editGrap = new EditGraph<T>(seq1, seq2);
-            var waypoints = editGrap.CalculatePath(option);
+            var editGraph = new EditGraph<T>(seq1, seq2);
+            var waypoints = editGraph.CalculatePath(option);
 
             return MakeResults<T>(waypoints, seq1, seq2);
         }
@@ -42,7 +42,7 @@ namespace NetDiff
             return diffResults.Where(r => r.Status != DiffStatus.Deleted).Select(r => r.Obj2);
         }
 
-        public static IEnumerable<DiffResult<T>> Optimaize<T>(IEnumerable<DiffResult<T>> diffResults, IEqualityComparer<T> compare = null)
+        public static IEnumerable<DiffResult<T>> Optimize<T>(IEnumerable<DiffResult<T>> diffResults, IEqualityComparer<T> compare = null)
         {
             var srcArray = new NullableDiffObject<T>[diffResults.Count()];
             var dstArray = new NullableDiffObject<T>[srcArray.Length];
@@ -198,8 +198,8 @@ namespace NetDiff
             foreach (var pair in waypoints.MakePairsWithNext())
             {
                 var status = GetStatus(pair.Item1, pair.Item2);
-                T obj1 = default(T);
-                T obj2 = default(T);
+                T obj1 = default;
+                T obj2 = default;
                 switch (status)
                 {
                     case DiffStatus.Equal:
