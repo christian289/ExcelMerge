@@ -162,6 +162,13 @@ namespace ExcelMerge.GUI.Views
             config.SrcSheetIndex = SrcSheetCombobox.SelectedIndex;
             config.DstSheetIndex = DstSheetCombobox.SelectedIndex;
 
+            var viewModel = GetViewModel();
+            if (viewModel != null)
+            {
+                config.UseKeyColumn = viewModel.UseKeyColumn;
+                config.KeyColumnName = viewModel.KeyColumnName;
+            }
+
             if (fileSetting != null)
             {
                 if (isStartup)

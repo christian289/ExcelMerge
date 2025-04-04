@@ -1168,7 +1168,16 @@ namespace ExcelMerge.GUI.Properties {
                 return ResourceManager.GetString("Word_Japanese", resourceCulture);
             }
         }
-        
+
+        /// <summary>
+        ///   查找类似 Korean 的本地化字符串。
+        /// </summary>
+        public static string Word_Korean {
+            get {
+                return ResourceManager.GetString("Word_Korean", resourceCulture);
+            }
+        }
+
         /// <summary>
         ///   查找类似 Launguage 的本地化字符串。
         /// </summary>

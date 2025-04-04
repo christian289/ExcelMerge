@@ -3,476 +3,575 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ExcelMerge.GUI.Views"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:props="clr-namespace:ExcelMerge.GUI.Properties"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:vc="clr-namespace:ExcelMerge.GUI.ValueConverters"
-        mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="{x:Static props:Resources.Title_GeneralSettingWindow}"
+        Width="800"
+        Height="640"
         Icon="/ExcelMerge.GUI;component/app.ico"
-        Title="{x:Static props:Resources.Title_GeneralSettingWindow}" Height="640" Width="800">
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d">
 
-  <Window.Resources>
-    <vc:MultiValueConverter x:Key="multiValueConverter"/>
-  </Window.Resources>
+    <Window.Resources>
+        <vc:MultiValueConverter x:Key="multiValueConverter" />
+    </Window.Resources>
 
-  <Grid>
-    <Grid.RowDefinitions>
-      <RowDefinition Height="90*"/>
-      <RowDefinition Height="10*"/>
-    </Grid.RowDefinitions>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
 
-    <ScrollViewer Grid.Row="0">
-      <StackPanel Orientation="Vertical">
+        <ScrollViewer Grid.Row="0">
+            <StackPanel Orientation="Vertical">
 
-        <GroupBox Header="{x:Static props:Resources.GroupBox_ReadSetting}" Margin="3">
-          <StackPanel Orientation="Vertical">
+                <GroupBox Margin="3" Header="{x:Static props:Resources.GroupBox_ReadSetting}">
+                    <StackPanel Orientation="Vertical">
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30*"/>
-                <ColumnDefinition Width="70*"/>
-              </Grid.ColumnDefinitions>
-              <Label Grid.Column="0"
-                     VerticalAlignment="Center"
-                     Content="{x:Static props:Resources.Label_SkipFirstBlankRows}"/>
-              <CheckBox Grid.Column="1" 
-                        VerticalAlignment="Center" 
-                        IsChecked="{Binding Setting.SkipFirstBlankRows}"/>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30*" />
+                                <ColumnDefinition Width="70*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_SkipFirstBlankRows}" />
+                            <CheckBox Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Setting.SkipFirstBlankRows}" />
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30*"/>
-                <ColumnDefinition Width="70*"/>
-              </Grid.ColumnDefinitions>
-              <Label Grid.Column="0" 
-                     VerticalAlignment="Center" 
-                     Content="{x:Static props:Resources.Label_SkipFirstBlankColumns}"/>
-              <CheckBox Grid.Column="1" 
-                        VerticalAlignment="Center" 
-                        IsChecked="{Binding Setting.SkipFirstBlankColumns}"/>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30*" />
+                                <ColumnDefinition Width="70*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_SkipFirstBlankColumns}" />
+                            <CheckBox Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Setting.SkipFirstBlankColumns}" />
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30*"/>
-                <ColumnDefinition Width="70*"/>
-              </Grid.ColumnDefinitions>
-              <Label Grid.Column="0"
-                     VerticalAlignment="Center" 
-                     Content="{x:Static props:Resources.Label_TrimLastBlankRows}"/>
-              <CheckBox Grid.Column="1" 
-                        VerticalAlignment="Center"
-                        IsChecked="{Binding Setting.TrimLastBlankRows}"/>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30*" />
+                                <ColumnDefinition Width="70*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_TrimLastBlankRows}" />
+                            <CheckBox Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Setting.TrimLastBlankRows}" />
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30*"/>
-                <ColumnDefinition Width="70*"/>
-              </Grid.ColumnDefinitions>
-              <Label Grid.Column="0" 
-                     VerticalAlignment="Center"
-                     Content="{x:Static props:Resources.Label_TrimLastBlankColumns}"/>
-              <CheckBox Grid.Column="1" 
-                        VerticalAlignment="Center"
-                        IsChecked="{Binding Setting.TrimLastBlankColumns}"/>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30*" />
+                                <ColumnDefinition Width="70*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_TrimLastBlankColumns}" />
+                            <CheckBox Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Setting.TrimLastBlankColumns}" />
+                        </Grid>
 
-          </StackPanel>
-        </GroupBox>
+                    </StackPanel>
+                </GroupBox>
 
-        <GroupBox Header="{x:Static props:Resources.GroupBox_Behavior}" Margin="3">
-          <StackPanel Orientation="Vertical">
+                <GroupBox Margin="3" Header="{x:Static props:Resources.GroupBox_Behavior}">
+                    <StackPanel Orientation="Vertical">
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40*"/>
-                <ColumnDefinition Width="60*"/>
-              </Grid.ColumnDefinitions>
-              <Label Grid.Column="0"
-                     VerticalAlignment="Center"
-                     Content="{x:Static props:Resources.Label_NotifyEqual}"/>
-              <CheckBox Grid.Column="1" 
-                        VerticalAlignment="Center" 
-                        IsChecked="{Binding Setting.NotifyEqual}"/>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="60*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_NotifyEqual}" />
+                            <CheckBox Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Setting.NotifyEqual}" />
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40*"/>
-                <ColumnDefinition Width="60*"/>
-              </Grid.ColumnDefinitions>
-              <Label Grid.Column="0"
-                     VerticalAlignment="Center"
-                     Content="{x:Static props:Resources.Label_AlwaysExpandCellDiff}"/>
-              <CheckBox Grid.Column="1" 
-                        VerticalAlignment="Center" 
-                        IsChecked="{Binding Setting.AlwaysExpandCellDiff}"/>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="60*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_AlwaysExpandCellDiff}" />
+                            <CheckBox Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Setting.AlwaysExpandCellDiff}" />
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40*"/>
-                <ColumnDefinition Width="60*"/>
-              </Grid.ColumnDefinitions>
-              <Label Grid.Column="0"
-                     VerticalAlignment="Center"
-                     Content="{x:Static props:Resources.Label_FocusFirstDiff}"/>
-              <CheckBox Grid.Column="1" 
-                        VerticalAlignment="Center" 
-                        IsChecked="{Binding Setting.FocusFirstDiff}"/>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="60*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_FocusFirstDiff}" />
+                            <CheckBox Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Setting.FocusFirstDiff}" />
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40*"/>
-                <ColumnDefinition Width="60*"/>
-              </Grid.ColumnDefinitions>
-              <Label Grid.Column="0"
-                     VerticalAlignment="Center"
-                     Content="{x:Static props:Resources.Label_MoveNextSheetWhenScrolledBeyondEnd}"/>
-              <CheckBox Grid.Column="1" 
-                        VerticalAlignment="Center" 
-                        IsChecked="{Binding Setting.MoveNextSheetWhenScrolledBeyondEnd}"/>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="60*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_MoveNextSheetWhenScrolledBeyondEnd}" />
+                            <CheckBox Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Setting.MoveNextSheetWhenScrolledBeyondEnd}" />
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40*"/>
-                <ColumnDefinition Width="60*"/>
-              </Grid.ColumnDefinitions>
-              <Label Grid.Column="0"
-                     VerticalAlignment="Center"
-                     Content="{x:Static props:Resources.Label_MovePrevSheetWhenScrolledBeyondStart}"/>
-              <CheckBox Grid.Column="1" 
-                        VerticalAlignment="Center" 
-                        IsChecked="{Binding Setting.MovePrevSheetWhenScrolledBeyondStart}"/>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="60*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_MovePrevSheetWhenScrolledBeyondStart}" />
+                            <CheckBox Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Setting.MovePrevSheetWhenScrolledBeyondStart}" />
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40*"/>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="50*"/>
-              </Grid.ColumnDefinitions>
-              <Label Grid.Column="0"
-                     VerticalAlignment="Center"
-                     Content="{x:Static props:Resources.Label_UseBatchExtraction}"/>
-              <CheckBox Grid.Column="1" 
-                        VerticalAlignment="Center" 
-                        IsChecked="{Binding Setting.UseBatchExtraction}"/>
-              <Label Grid.Column="2" Content="{x:Static props:Resources.Description_UseBatchExtraction}" />
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="10*" />
+                                <ColumnDefinition Width="50*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_UseBatchExtraction}" />
+                            <CheckBox Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Setting.UseBatchExtraction}" />
+                            <Label Grid.Column="2" Content="{x:Static props:Resources.Description_UseBatchExtraction}" />
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40*"/>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="50*"/>
-              </Grid.ColumnDefinitions>
-              <Label Grid.Column="0"
-                     VerticalAlignment="Center"
-                     Content="{x:Static props:Resources.Label_MakeSheetPairsByName}"/>
-              <CheckBox Grid.Column="1" 
-                        VerticalAlignment="Center" 
-                        IsChecked="{Binding Setting.MakeSheetPairsByName}"/>
-              <Label Grid.Column="2" Content="{x:Static props:Resources.Description_MakeSheetPairsByname}" />
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*" />
+                                <ColumnDefinition Width="10*" />
+                                <ColumnDefinition Width="50*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_MakeSheetPairsByName}" />
+                            <CheckBox Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Setting.MakeSheetPairsByName}" />
+                            <Label Grid.Column="2" Content="{x:Static props:Resources.Description_MakeSheetPairsByname}" />
+                        </Grid>
 
-          </StackPanel>
-        </GroupBox>
+                    </StackPanel>
+                </GroupBox>
 
-        <GroupBox Header="{x:Static props:Resources.GroupBox_Style}" Margin="3">
-          <StackPanel Orientation="Vertical">
+                <GroupBox Margin="3" Header="{x:Static props:Resources.GroupBox_Style}">
+                    <StackPanel Orientation="Vertical">
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="80*"/>
-              </Grid.ColumnDefinitions>
-              <Label Grid.Column="0" 
-                     VerticalAlignment="Center"
-                     Content="{x:Static props:Resources.Label_ColumnWidth}"/>
-              <xctk:IntegerUpDown Grid.Column="1" 
-                                  Width="100"
-                                  HorizontalAlignment="Left"
-                                  Minimum="50" 
-                                  Value="{Binding Setting.ColumnWidth, UpdateSourceTrigger=PropertyChanged}" />
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*" />
+                                <ColumnDefinition Width="80*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_ColumnWidth}" />
+                            <xctk:IntegerUpDown Grid.Column="1"
+                                                Width="100"
+                                                HorizontalAlignment="Left"
+                                                Minimum="50"
+                                                Value="{Binding Setting.ColumnWidth, UpdateSourceTrigger=PropertyChanged}" />
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="80*"/>
-              </Grid.ColumnDefinitions>
-              <Label Grid.Column="0" 
-                     VerticalAlignment="Center"
-                     Content="{x:Static props:Resources.Label_MaxRowHeight}"/>
-              <xctk:IntegerUpDown Grid.Column="1" 
-                                  Width="100"
-                                  HorizontalAlignment="Left"
-                                  Minimum="20" 
-                                  Value="{Binding Setting.MaxRowHeight, UpdateSourceTrigger=PropertyChanged}" />
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*" />
+                                <ColumnDefinition Width="80*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_MaxRowHeight}" />
+                            <xctk:IntegerUpDown Grid.Column="1"
+                                                Width="100"
+                                                HorizontalAlignment="Left"
+                                                Minimum="20"
+                                                Value="{Binding Setting.MaxRowHeight, UpdateSourceTrigger=PropertyChanged}" />
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="80*"/>
-              </Grid.ColumnDefinitions>
-              <Label Grid.Column="0" 
-                     VerticalAlignment="Center"
-                     Content="{x:Static props:Resources.Label_FitRowHeight}"/>
-              <CheckBox Grid.Column="1" 
-                        VerticalAlignment="Center" 
-                        IsChecked="{Binding Setting.FitRowHeight}"/>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*" />
+                                <ColumnDefinition Width="80*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_FitRowHeight}" />
+                            <CheckBox Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Setting.FitRowHeight}" />
+                        </Grid>
 
-            <GroupBox Header="{x:Static props:Resources.Label_RowColor}" Margin="3">
-              <StackPanel Orientation="Vertical">
-                <ItemsControl Grid.Column="1" 
-                            AlternationCount="1000"
-                            ItemsSource="{Binding Setting.AlternatingColorStrings}" >
-                  <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                      <StackPanel Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                  </ItemsControl.ItemsPanel>
-                  <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                      <Grid Margin="3">
-                        <Grid.ColumnDefinitions>
-                          <ColumnDefinition Width="20*"/>
-                          <ColumnDefinition Width="80*"/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="3">
-                          <TextBox Text="{Binding Mode=OneWay}" IsReadOnly="True" Width="100" Height="25"/>
-                          <xctk:ColorPicker SelectedColor="{Binding Mode=OneWay}" Width="250" Height="25" Margin="3 0 0 0">
-                            <i:Interaction.Triggers>
-                              <i:EventTrigger EventName="Closed">
-                                <i:InvokeCommandAction Command="{Binding DataContext.EditAlternationColorCommand, RelativeSource={RelativeSource AncestorType=Window}}">
-                                  <i:InvokeCommandAction.CommandParameter>
-                                    <MultiBinding Converter="{StaticResource multiValueConverter}">
-                                      <Binding Path="(ItemsControl.AlternationIndex)" RelativeSource="{RelativeSource TemplatedParent}" Mode="OneWay"/>
-                                      <Binding Path="SelectedColor" RelativeSource="{RelativeSource AncestorType=xctk:ColorPicker}" Mode="OneWay"/>
-                                    </MultiBinding>
-                                  </i:InvokeCommandAction.CommandParameter>
-                                </i:InvokeCommandAction>
-                              </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                          </xctk:ColorPicker>
-                          <Button Content="{x:Static props:Resources.Word_Remove}" Width="50" Margin="3 0 0 0"
-                              IsEnabled="{Binding DataContext.CanRemoveAlternationColor, RelativeSource={RelativeSource AncestorType=Window}}"
-                              Command="{Binding DataContext.RemoveAlternationColorCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                              CommandParameter="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"/>
-                        </StackPanel>
-                      </Grid>
-                    </DataTemplate>
-                  </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                        <GroupBox Margin="3" Header="{x:Static props:Resources.Label_RowColor}">
+                            <StackPanel Orientation="Vertical">
+                                <ItemsControl Grid.Column="1"
+                                              AlternationCount="1000"
+                                              ItemsSource="{Binding Setting.AlternatingColorStrings}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Vertical" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Margin="3">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="20*" />
+                                                    <ColumnDefinition Width="80*" />
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel Grid.Column="1"
+                                                            Margin="3"
+                                                            Orientation="Horizontal">
+                                                    <TextBox Width="100"
+                                                             Height="25"
+                                                             IsReadOnly="True"
+                                                             Text="{Binding Mode=OneWay}" />
+                                                    <xctk:ColorPicker Width="250"
+                                                                      Height="25"
+                                                                      Margin="3,0,0,0"
+                                                                      SelectedColor="{Binding Mode=OneWay}">
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger EventName="Closed">
+                                                                <i:InvokeCommandAction Command="{Binding DataContext.EditAlternationColorCommand, RelativeSource={RelativeSource AncestorType=Window}}">
+                                                                    <i:InvokeCommandAction.CommandParameter>
+                                                                        <MultiBinding Converter="{StaticResource multiValueConverter}">
+                                                                            <Binding Mode="OneWay"
+                                                                                     Path="(ItemsControl.AlternationIndex)"
+                                                                                     RelativeSource="{RelativeSource TemplatedParent}" />
+                                                                            <Binding Mode="OneWay"
+                                                                                     Path="SelectedColor"
+                                                                                     RelativeSource="{RelativeSource AncestorType=xctk:ColorPicker}" />
+                                                                        </MultiBinding>
+                                                                    </i:InvokeCommandAction.CommandParameter>
+                                                                </i:InvokeCommandAction>
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
+                                                    </xctk:ColorPicker>
+                                                    <Button Width="50"
+                                                            Margin="3,0,0,0"
+                                                            Command="{Binding DataContext.RemoveAlternationColorCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                            CommandParameter="{Binding Path=(ItemsControl.AlternationIndex), RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                                            Content="{x:Static props:Resources.Word_Remove}"
+                                                            IsEnabled="{Binding DataContext.CanRemoveAlternationColor, RelativeSource={RelativeSource AncestorType=Window}}" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
 
-                <Grid Margin="3">
-                  <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="20*"/>
-                    <ColumnDefinition Width="80*"/>
-                  </Grid.ColumnDefinitions>
-                  <StackPanel Orientation="Horizontal" Grid.Column="1">
-                    <TextBox Text="{Binding Path=SelectedColor, ElementName=NewColorPicker, Mode=OneWay}" IsReadOnly="True" Width="100" Height="25" Margin="3 0 0 0" />
-                    <xctk:ColorPicker x:Name="NewColorPicker" Width="250" Height="25" Margin="3" SelectedColor="AliceBlue"/>
-                    <Button Content="+" Margin="0 3 3 3" Width="50"
-                        Command="{Binding AddAlternationColorCommand}"
-                        CommandParameter="{Binding Path=SelectedColor, ElementName=NewColorPicker}"/>
-                  </StackPanel>
-                </Grid>
-              </StackPanel>
-            </GroupBox>
+                                <Grid Margin="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20*" />
+                                        <ColumnDefinition Width="80*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <TextBox Width="100"
+                                                 Height="25"
+                                                 Margin="3,0,0,0"
+                                                 IsReadOnly="True"
+                                                 Text="{Binding Path=SelectedColor, ElementName=NewColorPicker, Mode=OneWay}" />
+                                        <xctk:ColorPicker x:Name="NewColorPicker"
+                                                          Width="250"
+                                                          Height="25"
+                                                          Margin="3"
+                                                          SelectedColor="AliceBlue" />
+                                        <Button Width="50"
+                                                Margin="0,3,3,3"
+                                                Command="{Binding AddAlternationColorCommand}"
+                                                CommandParameter="{Binding Path=SelectedColor, ElementName=NewColorPicker}"
+                                                Content="+" />
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </GroupBox>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="80*"/>
-              </Grid.ColumnDefinitions>
-              <Label Content="{x:Static props:Resources.Label_ColumnHeaderColor}" Grid.Column="0" 
-                 VerticalAlignment="Center" />
-              <StackPanel Orientation="Horizontal" 
-                      Grid.Column="1" 
-                      >
-                <TextBox Text="{Binding Path=SelectedColor, ElementName=ColumnHeaderColorPicker, Mode=OneWay}" 
-                             IsReadOnly="True" Width="100" Height="25" Margin="3" />
-                <xctk:ColorPicker x:Name="ColumnHeaderColorPicker" Width="250" Height="25" Margin="3"
-                                      SelectedColor="{Binding Setting.ColumnHeaderColorString}"/>
-              </StackPanel>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*" />
+                                <ColumnDefinition Width="80*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_ColumnHeaderColor}" />
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <TextBox Width="100"
+                                         Height="25"
+                                         Margin="3"
+                                         IsReadOnly="True"
+                                         Text="{Binding Path=SelectedColor, ElementName=ColumnHeaderColorPicker, Mode=OneWay}" />
+                                <xctk:ColorPicker x:Name="ColumnHeaderColorPicker"
+                                                  Width="250"
+                                                  Height="25"
+                                                  Margin="3"
+                                                  SelectedColor="{Binding Setting.ColumnHeaderColorString}" />
+                            </StackPanel>
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="80*"/>
-              </Grid.ColumnDefinitions>
-              <Label Content="{x:Static props:Resources.Label_RowHeaderColor}" Grid.Column="0" 
-                 VerticalAlignment="Center" />
-              <StackPanel Orientation="Horizontal" Grid.Column="1"
-                      >
-                <TextBox Text="{Binding Path=SelectedColor, ElementName=RowHeaderColorPicker, Mode=OneWay}" 
-                             IsReadOnly="True" Width="100" Height="25" Margin="3" />
-                <xctk:ColorPicker x:Name="RowHeaderColorPicker" Width="250" Height="25" Margin="3"
-                                      SelectedColor="{Binding Setting.RowHeaderColorString}"/>
-              </StackPanel>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*" />
+                                <ColumnDefinition Width="80*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_RowHeaderColor}" />
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <TextBox Width="100"
+                                         Height="25"
+                                         Margin="3"
+                                         IsReadOnly="True"
+                                         Text="{Binding Path=SelectedColor, ElementName=RowHeaderColorPicker, Mode=OneWay}" />
+                                <xctk:ColorPicker x:Name="RowHeaderColorPicker"
+                                                  Width="250"
+                                                  Height="25"
+                                                  Margin="3"
+                                                  SelectedColor="{Binding Setting.RowHeaderColorString}" />
+                            </StackPanel>
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="80*"/>
-              </Grid.ColumnDefinitions>
-              <Label Content="{x:Static props:Resources.Label_AddedColor}" Grid.Column="0" 
-                 VerticalAlignment="Center" />
-              <StackPanel Orientation="Horizontal" Grid.Column="1" 
-                      >
-                <TextBox Text="{Binding Path=SelectedColor, ElementName=AddedColorPicker, Mode=OneWay}" 
-                             IsReadOnly="True" Width="100" Height="25" Margin="3" />
-                <xctk:ColorPicker x:Name="AddedColorPicker" Width="250" Height="25" Margin="3"
-                                      SelectedColor="{Binding Setting.AddedColorString}"/>
-              </StackPanel>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*" />
+                                <ColumnDefinition Width="80*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_AddedColor}" />
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <TextBox Width="100"
+                                         Height="25"
+                                         Margin="3"
+                                         IsReadOnly="True"
+                                         Text="{Binding Path=SelectedColor, ElementName=AddedColorPicker, Mode=OneWay}" />
+                                <xctk:ColorPicker x:Name="AddedColorPicker"
+                                                  Width="250"
+                                                  Height="25"
+                                                  Margin="3"
+                                                  SelectedColor="{Binding Setting.AddedColorString}" />
+                            </StackPanel>
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="80*"/>
-              </Grid.ColumnDefinitions>
-              <Label Content="{x:Static props:Resources.Label_RemovedColor}" Grid.Column="0" 
-                 VerticalAlignment="Center" />
-              <StackPanel Orientation="Horizontal" Grid.Column="1">
-                <TextBox Text="{Binding Path=SelectedColor, ElementName=RemovedColorPicker, Mode=OneWay}" 
-                             IsReadOnly="True" Width="100" Height="25" Margin="3" />
-                <xctk:ColorPicker x:Name="RemovedColorPicker" Width="250" Height="25" Margin="3"
-                                      SelectedColor="{Binding Setting.RemovedColorString}"/>
-              </StackPanel>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*" />
+                                <ColumnDefinition Width="80*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_RemovedColor}" />
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <TextBox Width="100"
+                                         Height="25"
+                                         Margin="3"
+                                         IsReadOnly="True"
+                                         Text="{Binding Path=SelectedColor, ElementName=RemovedColorPicker, Mode=OneWay}" />
+                                <xctk:ColorPicker x:Name="RemovedColorPicker"
+                                                  Width="250"
+                                                  Height="25"
+                                                  Margin="3"
+                                                  SelectedColor="{Binding Setting.RemovedColorString}" />
+                            </StackPanel>
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="80*"/>
-              </Grid.ColumnDefinitions>
-              <Label Content="{x:Static props:Resources.Label_ModifiedColor}" Grid.Column="0" 
-                 VerticalAlignment="Center" />
-              <StackPanel Orientation="Horizontal" Grid.Column="1" 
-                      >
-                <TextBox Text="{Binding Path=SelectedColor, ElementName=ModifiedColorPicker, Mode=OneWay}" 
-                             IsReadOnly="True" Width="100" Height="25" Margin="3" />
-                <xctk:ColorPicker x:Name="ModifiedColorPicker" Width="250" Height="25" Margin="3"
-                                      SelectedColor="{Binding Setting.ModifiedColorString}"/>
-              </StackPanel>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*" />
+                                <ColumnDefinition Width="80*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_ModifiedColor}" />
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <TextBox Width="100"
+                                         Height="25"
+                                         Margin="3"
+                                         IsReadOnly="True"
+                                         Text="{Binding Path=SelectedColor, ElementName=ModifiedColorPicker, Mode=OneWay}" />
+                                <xctk:ColorPicker x:Name="ModifiedColorPicker"
+                                                  Width="250"
+                                                  Height="25"
+                                                  Margin="3"
+                                                  SelectedColor="{Binding Setting.ModifiedColorString}" />
+                            </StackPanel>
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="80*"/>
-              </Grid.ColumnDefinitions>
-              <Label Content="{x:Static props:Resources.Label_ColorModifiedRow}" Grid.Column="0" 
-                 VerticalAlignment="Center" />
-              <CheckBox Grid.Column="1" 
-                    VerticalAlignment="Center" Margin="3" 
-                      IsChecked="{Binding Setting.ColorModifiedRow}"/>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*" />
+                                <ColumnDefinition Width="80*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_ColorModifiedRow}" />
+                            <CheckBox Grid.Column="1"
+                                      Margin="3"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Setting.ColorModifiedRow}" />
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="80*"/>
-              </Grid.ColumnDefinitions>
-              <Label Content="{x:Static props:Resources.Label_ModifiedRowColor}" Grid.Column="0" 
-                 VerticalAlignment="Center" />
-              <StackPanel Orientation="Horizontal" Grid.Column="1" 
-                      >
-                <TextBox Text="{Binding Path=SelectedColor, ElementName=ModifiedRowColorPicker, Mode=OneWay}" 
-                             IsReadOnly="True" Width="100" Height="25" Margin="3" />
-                <xctk:ColorPicker x:Name="ModifiedRowColorPicker" Width="250" Height="25" Margin="3"
-                                      SelectedColor="{Binding Setting.ModifiedRowColorString}"/>
-              </StackPanel>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*" />
+                                <ColumnDefinition Width="80*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_ModifiedRowColor}" />
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <TextBox Width="100"
+                                         Height="25"
+                                         Margin="3"
+                                         IsReadOnly="True"
+                                         Text="{Binding Path=SelectedColor, ElementName=ModifiedRowColorPicker, Mode=OneWay}" />
+                                <xctk:ColorPicker x:Name="ModifiedRowColorPicker"
+                                                  Width="250"
+                                                  Height="25"
+                                                  Margin="3"
+                                                  SelectedColor="{Binding Setting.ModifiedRowColorString}" />
+                            </StackPanel>
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="80*"/>
-              </Grid.ColumnDefinitions>
-              <Label Content="{x:Static props:Resources.Word_Font}" Grid.Column="0" 
-                 VerticalAlignment="Center" />
-              <ComboBox Grid.Column="1"
-                    ItemsSource="{Binding FontNames}" SelectedItem="{Binding Setting.FontName}"/>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*" />
+                                <ColumnDefinition Width="80*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Word_Font}" />
+                            <ComboBox Grid.Column="1"
+                                      ItemsSource="{Binding FontNames}"
+                                      SelectedItem="{Binding Setting.FontName}" />
+                        </Grid>
 
-          </StackPanel>
-        </GroupBox>
+                    </StackPanel>
+                </GroupBox>
 
-        <GroupBox Header="{x:Static props:Resources.GroupBox_LogFormat}" Margin="3">
-          <StackPanel Orientation="Vertical">
+                <GroupBox Margin="3" Header="{x:Static props:Resources.GroupBox_LogFormat}">
+                    <StackPanel Orientation="Vertical">
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30*"/>
-                <ColumnDefinition Width="70*"/>
-              </Grid.ColumnDefinitions>
-              <Label Content="{x:Static props:Resources.Label_LogFormat}" Grid.Column="0" 
-                 VerticalAlignment="Center" />
-              <TextBox Grid.Column="1" 
-                   Text="{Binding Setting.LogFormat}"/>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30*" />
+                                <ColumnDefinition Width="70*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_LogFormat}" />
+                            <TextBox Grid.Column="1" Text="{Binding Setting.LogFormat}" />
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30*"/>
-                <ColumnDefinition Width="70*"/>
-              </Grid.ColumnDefinitions>
-              <Label Content="{x:Static props:Resources.Label_AddedRowLogFormat}" Grid.Column="0" 
-                 VerticalAlignment="Center" />
-              <TextBox Grid.Column="1" 
-                   Text="{Binding Setting.AddedRowLogFormat}"/>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30*" />
+                                <ColumnDefinition Width="70*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_AddedRowLogFormat}" />
+                            <TextBox Grid.Column="1" Text="{Binding Setting.AddedRowLogFormat}" />
+                        </Grid>
 
-            <Grid Margin="3">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30*"/>
-                <ColumnDefinition Width="70*"/>
-              </Grid.ColumnDefinitions>
-              <Label Content="{x:Static props:Resources.Label_RemovedRowLogFormat}" Grid.Column="0" 
-                 VerticalAlignment="Center" />
-              <TextBox Grid.Column="1"
-                   Text="{Binding Setting.RemovedRowLogFormat}"/>
-            </Grid>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30*" />
+                                <ColumnDefinition Width="70*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="{x:Static props:Resources.Label_RemovedRowLogFormat}" />
+                            <TextBox Grid.Column="1" Text="{Binding Setting.RemovedRowLogFormat}" />
+                        </Grid>
 
-          </StackPanel>
-        </GroupBox>
+                    </StackPanel>
+                </GroupBox>
 
-      </StackPanel>
-    </ScrollViewer>
+                <GroupBox Margin="3" Header="키 컬럼 설정">
+                    <StackPanel Orientation="Vertical">
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30*" />
+                                <ColumnDefinition Width="70*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="기본적으로 키 컬럼 사용" />
+                            <CheckBox Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Setting.UseKeyColumnByDefault}" />
+                        </Grid>
 
-    <Grid Grid.Row="1">
-      <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="40*"/>
-        <ColumnDefinition Width="20*"/>
-        <ColumnDefinition Width="20*"/>
-        <ColumnDefinition Width="20*"/>
-      </Grid.ColumnDefinitions>
+                        <Grid Margin="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30*" />
+                                <ColumnDefinition Width="70*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   VerticalAlignment="Center"
+                                   Content="기본 키 컬럼 이름" />
+                            <TextBox Grid.Column="1" Text="{Binding Setting.DefaultKeyColumnName}" />
+                        </Grid>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
 
-      <Button Content="{x:Static props:Resources.Word_Done}" Grid.Column="1" Margin="10"
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*" />
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="20*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1"
+                    Margin="10"
                     Command="{Binding DoneCommand}"
-                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
-      <Button Content="{x:Static props:Resources.Word_Reset}" Grid.Column="2" Margin="10"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                    Content="{x:Static props:Resources.Word_Done}" />
+            <Button Grid.Column="2"
+                    Margin="10"
                     Command="{Binding ResetCommand}"
-                    IsEnabled="{Binding IsDirty}"/>
-      <Button Content="{x:Static props:Resources.Word_Apply}" Grid.Column="3" Margin="10"
+                    Content="{x:Static props:Resources.Word_Reset}"
+                    IsEnabled="{Binding IsDirty}" />
+            <Button Grid.Column="3"
+                    Margin="10"
                     Command="{Binding ApplyCommand}"
-                    IsEnabled="{Binding IsDirty}"/>
-    </Grid>
+                    Content="{x:Static props:Resources.Word_Apply}"
+                    IsEnabled="{Binding IsDirty}" />
+        </Grid>
 
-  </Grid>
+    </Grid>
 </Window>

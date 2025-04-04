@@ -225,11 +225,20 @@
   <data name="ContextMenu_DiffAsHeader" xml:space="preserve">
     <value>この行を列ヘッダとして差分を抽出する</value>
   </data>
+  <data name="ContextMenu_SetRowHeader" xml:space="preserve">
+    <value>←行ヘッダにセット</value>
+  </data>
+  <data name="ContextMenu_ResetRowHeader" xml:space="preserve">
+    <value>←行ヘッダをリセット</value>
+  </data>
+  <data name="ContextMenu_SetColumnHeader" xml:space="preserve">
+    <value>↑列ヘッダにセット</value>
+  </data>
+  <data name="ContextMenu_ResetColumnHeader" xml:space="preserve">
+    <value>↑列ヘッダをリセット</value>
+  </data>
   <data name="GroupBox_DisplayFormat" xml:space="preserve">
     <value>表示形式</value>
-  </data>
-  <data name="Label_RowHeight" xml:space="preserve">
-    <value>行の高さ</value>
   </data>
   <data name="Label_ColumnWidth" xml:space="preserve">
     <value>列の幅</value>
@@ -329,18 +338,6 @@
   </data>
   <data name="Word_MatchType" xml:space="preserve">
     <value>マッチタイプ</value>
-  </data>
-  <data name="ContextMenu_ResetColumnHeader" xml:space="preserve">
-    <value>↑列ヘッダをリセット</value>
-  </data>
-  <data name="ContextMenu_ResetRowHeader" xml:space="preserve">
-    <value>←行ヘッダをリセット</value>
-  </data>
-  <data name="ContextMenu_SetColumnHeader" xml:space="preserve">
-    <value>↑列ヘッダにセット</value>
-  </data>
-  <data name="ContextMenu_SetRowHeader" xml:space="preserve">
-    <value>←行ヘッダにセット</value>
   </data>
   <data name="Word_Font" xml:space="preserve">
     <value>フォント</value>
@@ -509,6 +506,12 @@
   <data name="Label_MoveNextSheetWhenScrolledBeyondEnd" xml:space="preserve">
     <value>終端のスクロールで次のシートへ移動する</value>
   </data>
+  <data name="Label_MovePrevSheetWhenScrolledBeyondStart" xml:space="preserve">
+    <value>始点のスクロールで前のシートへ移動する</value>
+  </data>
+  <data name="Label_UseBatchExtraction" xml:space="preserve">
+    <value>一括抽出を使用する</value>
+  </data>
   <data name="ToolTip_ExtractDiff" xml:space="preserve">
     <value>差分を抽出</value>
   </data>
@@ -518,25 +521,25 @@
   <data name="ToolTip_PrevSheet" xml:space="preserve">
     <value>前のシートの差分を抽出して表示 (Ctrl + PageUp)</value>
   </data>
-  <data name="Label_MakeSheetPairsByName" xml:space="preserve">
-    <value>同名のシートでペアを作成して並び替える</value>
-  </data>
-  <data name="Label_MovePrevSheetWhenScrolledBeyondStart" xml:space="preserve">
-    <value>始点のスクロールで前のシートへ移動する</value>
-  </data>
-  <data name="Label_UseBatchExtraction" xml:space="preserve">
-    <value>一括抽出を使用する</value>
-  </data>
   <data name="Description_MakeSheetPairsByname" xml:space="preserve">
     <value>※片方にしか含まれないシートは除外されます</value>
   </data>
   <data name="Description_UseBatchExtraction" xml:space="preserve">
     <value>※起動時のシート設定は無視されます</value>
   </data>
+  <data name="Label_MakeSheetPairsByName" xml:space="preserve">
+    <value>同名のシートでペアを作成して並び替える</value>
+  </data>
   <data name="Message_NoDiffAllSheet" xml:space="preserve">
     <value>全てのシートに差分は存在しません</value>
   </data>
   <data name="Word_Chinese" xml:space="preserve">
     <value>中国語</value>
+  </data>
+  <data name="Label_RowHeight" xml:space="preserve">
+    <value>行の高さ</value>
+  </data>
+  <data name="Word_Korean" xml:space="preserve">
+    <value>韓國語</value>
   </data>
 </root>

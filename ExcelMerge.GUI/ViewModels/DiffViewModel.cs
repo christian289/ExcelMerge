@@ -152,6 +152,20 @@ namespace ExcelMerge.GUI.ViewModels
             private set { SetProperty(ref sheetDiffInfoList, value); }
         }
 
+        private bool useKeyColumn;
+        public bool UseKeyColumn
+        {
+            get { return useKeyColumn; }
+            set { SetProperty(ref useKeyColumn, value); }
+        }
+
+        private string keyColumnName;
+        public string KeyColumnName
+        {
+            get { return keyColumnName; }
+            set { SetProperty(ref keyColumnName, value); }
+        }
+
         public DiffViewModel()
         {
             Description = new DragAcceptDescription();
@@ -160,6 +174,9 @@ namespace ExcelMerge.GUI.ViewModels
 
             SrcPath = string.Empty;
             DstPath = string.Empty;
+
+            UseKeyColumn = App.Instance.Setting.UseKeyColumnByDefault;
+            KeyColumnName = App.Instance.Setting.DefaultKeyColumnName;
         }
 
         public DiffViewModel(string src, string dst, MainWindowViewModel mwv) : this()

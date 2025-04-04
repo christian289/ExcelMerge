@@ -4,6 +4,7 @@ using System.Linq;
 using NPOI.SS.UserModel;
 using NetDiff;
 using SKCore.Collection;
+using System.Security.Cryptography;
 
 namespace ExcelMerge
 {
@@ -149,6 +150,157 @@ namespace ExcelMerge
             var dstColumns = dst.CreateColumns();
             var columnStatusMap = CreateColumnStatusMap(srcColumns, dstColumns, config);
 
+            if (config.UseKeyColumn && !string.IsNullOrEmpty(config.KeyColumnName))
+            {
+                return DiffWithKeyColumn(src, dst, config, srcColumns, dstColumns, columnStatusMap);
+            }
+            else
+            {
+                return DiffWithoutKeyColumn(src, dst, config, srcColumns, dstColumns, columnStatusMap);
+            }
+        }
+
+        private static ExcelSheetDiff DiffWithKeyColumn(ExcelSheet src, ExcelSheet dst, ExcelSheetDiffConfig config,
+                                                IEnumerable<ExcelColumn> srcColumns, IEnumerable<ExcelColumn> dstColumns,
+                                                Dictionary<int, ExcelColumnStatus> columnStatusMap)
+        {
+            // 1. 키 컬럼에 해당하는 컬럼 인덱스 찾기
+            int? srcKeyColumnIndex = null;
+            int? dstKeyColumnIndex = null;
+
+            // 키 컬럼 이름이 있는 칸을 헤더에서 찾기
+            if (config.SrcHeaderIndex >= 0)
+            {
+                int colIndex = 0;
+                foreach (var column in srcColumns)
+                {
+                    if (column.Cells.Count > config.SrcHeaderIndex &&
+                        column.Cells[config.SrcHeaderIndex].Value == config.KeyColumnName)
+                    {
+                        srcKeyColumnIndex = colIndex;
+                        break;
+                    }
+                    colIndex++;
+                }
+            }
+
+            if (config.DstHeaderIndex >= 0)
+            {
+                int colIndex = 0;
+                foreach (var column in dstColumns)
+                {
+                    if (column.Cells.Count > config.DstHeaderIndex &&
+                        column.Cells[config.DstHeaderIndex].Value == config.KeyColumnName)
+                    {
+                        dstKeyColumnIndex = colIndex;
+                        break;
+                    }
+                    colIndex++;
+                }
+            }
+
+            // 키 컬럼을 찾지 못한 경우 기본 형태로 비교
+            if (!srcKeyColumnIndex.HasValue || !dstKeyColumnIndex.HasValue)
+            {
+                return DiffWithoutKeyColumn(src, dst, config, srcColumns, dstColumns, columnStatusMap);
+            }
+
+            // 2. 키값에 따라 맵 생성
+            var srcKeyMap = new Dictionary<string, ExcelRow>();
+            var dstKeyMap = new Dictionary<string, ExcelRow>();
+
+            // 소스와 대상 Row를 키 값에 따라 보관
+            foreach (var row in src.Rows.Values)
+            {
+                if (srcKeyColumnIndex.Value < row.Cells.Count)
+                {
+                    var keyValue = row.Cells[srcKeyColumnIndex.Value].Value;
+                    if (!string.IsNullOrEmpty(keyValue) && !srcKeyMap.ContainsKey(keyValue))
+                    {
+                        srcKeyMap.Add(keyValue, row);
+                    }
+                }
+            }
+
+            foreach (var row in dst.Rows.Values)
+            {
+                if (dstKeyColumnIndex.Value < row.Cells.Count)
+                {
+                    var keyValue = row.Cells[dstKeyColumnIndex.Value].Value;
+                    if (!string.IsNullOrEmpty(keyValue) && !dstKeyMap.ContainsKey(keyValue))
+                    {
+                        dstKeyMap.Add(keyValue, row);
+                    }
+                }
+            }
+
+            // 3. 키값 기반으로 Row 비교
+            var sheetDiff = new ExcelSheetDiff(src, dst);
+            var rowDiffList = new List<DiffResult<ExcelRow>>();
+
+            // 추가된 Row 찾기 (dst에는 있지만 src에는 없는 키)
+            foreach (var keyValue in dstKeyMap.Keys)
+            {
+                if (!srcKeyMap.ContainsKey(keyValue))
+                {
+                    var dstRow = dstKeyMap[keyValue];
+                    var result = new DiffResult<ExcelRow>(null, dstRow, DiffStatus.Inserted);
+                    rowDiffList.Add(result);
+                }
+            }
+
+            // 삭제된 Row 찾기 (src에는 있지만 dst에는 없는 키)
+            foreach (var keyValue in srcKeyMap.Keys)
+            {
+                if (!dstKeyMap.ContainsKey(keyValue))
+                {
+                    var srcRow = srcKeyMap[keyValue];
+                    var result = new DiffResult<ExcelRow>(srcRow, null, DiffStatus.Deleted);
+                    rowDiffList.Add(result);
+                }
+            }
+
+            // 업데이트된 Row 또는 동일한 Row 찾기 (src와 dst 모두에 있는 키)
+            foreach (var keyValue in srcKeyMap.Keys)
+            {
+                if (dstKeyMap.ContainsKey(keyValue))
+                {
+                    var srcRow = srcKeyMap[keyValue];
+                    var dstRow = dstKeyMap[keyValue];
+
+                    // 셀의 내용을 비교하여 변경 여부 판단
+                    bool isModified = false;
+                    int maxCellCount = Math.Max(srcRow.Cells.Count, dstRow.Cells.Count);
+
+                    for (int i = 0; i < maxCellCount; i++)
+                    {
+                        string srcValue = i < srcRow.Cells.Count ? srcRow.Cells[i].Value : string.Empty;
+                        string dstValue = i < dstRow.Cells.Count ? dstRow.Cells[i].Value : string.Empty;
+
+                        if (srcValue != dstValue)
+                        {
+                            isModified = true;
+                            break;
+                        }
+                    }
+
+                    var status = isModified ? DiffStatus.Modified : DiffStatus.Equal;
+                    var result = new DiffResult<ExcelRow>(srcRow, dstRow, status);
+                    rowDiffList.Add(result);
+                }
+            }
+
+            // 4. 비교 결과를 적용
+            var resultArray = rowDiffList.ToArray();
+            DiffCells(resultArray, sheetDiff, columnStatusMap);
+
+            return sheetDiff;
+        }
+
+        private static ExcelSheetDiff DiffWithoutKeyColumn(ExcelSheet src, ExcelSheet dst, ExcelSheetDiffConfig config,
+                                                  IEnumerable<ExcelColumn> srcColumns, IEnumerable<ExcelColumn> dstColumns,
+                                                  Dictionary<int, ExcelColumnStatus> columnStatusMap)
+        {
             var option = new DiffOption<ExcelRow>();
             option.EqualityComparer =
                 new RowComparer(new HashSet<int>(columnStatusMap.Where(i => i.Value != ExcelColumnStatus.None).Select(i => i.Key)));

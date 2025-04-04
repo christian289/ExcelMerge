@@ -500,4 +500,7 @@
   <data name="Word_Chinese" xml:space="preserve">
     <value>中文</value>
   </data>
+  <data name="Word_Korean" xml:space="preserve">
+    <value>韓國語</value>
+  </data>
 </root>

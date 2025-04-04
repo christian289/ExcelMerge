@@ -270,6 +270,20 @@ namespace ExcelMerge.GUI.Settings
             set { SetProperty(ref removedRowLogFormat, value); }
         }
 
+        private bool useKeyColumnByDefault = false;
+        public bool UseKeyColumnByDefault
+        {
+            get { return useKeyColumnByDefault; }
+            set { SetProperty(ref useKeyColumnByDefault, value); }
+        }
+
+        private string defaultKeyColumnName = string.Empty;
+        public string DefaultKeyColumnName
+        {
+            get { return defaultKeyColumnName; }
+            set { SetProperty(ref defaultKeyColumnName, value); }
+        }
+
         public static ApplicationSetting Load()
         {
             Directory.CreateDirectory(Path.GetDirectoryName(Location));

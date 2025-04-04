@@ -118,259 +118,259 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Button_ExtractDiff" xml:space="preserve">
-    <value>Extract</value>
+    <value>추출</value>
   </data>
   <data name="Label_SkipFirstBlankRows" xml:space="preserve">
-    <value>Skip first blank rows</value>
+    <value>첫 빈 행 건너뛰기</value>
   </data>
   <data name="MenuItem_ExeExternalCmd" xml:space="preserve">
-    <value>Execute external command</value>
+    <value>외부 명령 실행</value>
   </data>
   <data name="MenuItem_ExternalCommands" xml:space="preserve">
-    <value>External Commands</value>
+    <value>외부 명령</value>
   </data>
   <data name="MenuItem_GeneralSetting" xml:space="preserve">
-    <value>General Setting</value>
+    <value>일반 설정</value>
   </data>
   <data name="MenuItem_OpenAsDstFile" xml:space="preserve">
-    <value>Open as Dst File</value>
+    <value>대상 파일로 열기</value>
   </data>
   <data name="MenuItem_OpenAsSrcFile" xml:space="preserve">
-    <value>Open as Src File</value>
+    <value>원본 파일로 열기</value>
   </data>
   <data name="MenuItem_OpenDstFile" xml:space="preserve">
-    <value>Open dst File</value>
+    <value>대상 파일 열기</value>
   </data>
   <data name="MenuItem_OpenSrcFile" xml:space="preserve">
-    <value>Open src file</value>
+    <value>원본 파일 열기</value>
   </data>
   <data name="MenuItem_RecentFiles" xml:space="preserve">
-    <value>Recent Files</value>
+    <value>최근 파일</value>
   </data>
   <data name="MenuItem_RecentFileSets" xml:space="preserve">
-    <value>Recent File Sets</value>
+    <value>최근 파일 세트</value>
   </data>
   <data name="Message_Reboot" xml:space="preserve">
-    <value>Please restart to apply the changes.</value>
+    <value>변경사항을 적용하려면 재시작해주세요.</value>
   </data>
   <data name="Title_ExternalCommandEditorWindow" xml:space="preserve">
-    <value>Edit External Command</value>
+    <value>외부 명령 편집</value>
   </data>
   <data name="Title_ExternalCommandsWindow" xml:space="preserve">
-    <value>External Commands</value>
+    <value>외부 명령</value>
   </data>
   <data name="Title_GeneralSettingWindow" xml:space="preserve">
-    <value>General Settings</value>
+    <value>일반 설정</value>
   </data>
   <data name="ToolTip_DstFilePath" xml:space="preserve">
-    <value>Dst File Path</value>
+    <value>대상 파일 경로</value>
   </data>
   <data name="ToolTip_DstSheet" xml:space="preserve">
-    <value>Dst Sheet</value>
+    <value>대상 시트</value>
   </data>
   <data name="ToolTip_SrcFilePath" xml:space="preserve">
-    <value>Src File Path</value>
+    <value>원본 파일 경로</value>
   </data>
   <data name="ToolTip_SrcSheet" xml:space="preserve">
-    <value>Src Sheet</value>
+    <value>원본 시트</value>
   </data>
   <data name="Word_Apply" xml:space="preserve">
-    <value>Apply</value>
+    <value>적용</value>
   </data>
   <data name="Word_Args" xml:space="preserve">
-    <value>Args</value>
+    <value>인수</value>
   </data>
   <data name="Word_Cancel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>취소</value>
   </data>
   <data name="Word_Default" xml:space="preserve">
-    <value>Default</value>
+    <value>기본값</value>
   </data>
   <data name="Word_Done" xml:space="preserve">
-    <value>Done</value>
+    <value>완료</value>
   </data>
   <data name="Word_Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>편집</value>
   </data>
   <data name="Word_English" xml:space="preserve">
-    <value>English</value>
+    <value>영어</value>
   </data>
   <data name="Word_Executable" xml:space="preserve">
-    <value>Executable</value>
+    <value>실행 파일</value>
   </data>
   <data name="Word_File" xml:space="preserve">
-    <value>File</value>
+    <value>파일</value>
   </data>
   <data name="Word_Japanese" xml:space="preserve">
-    <value>Japanese</value>
+    <value>일본어</value>
   </data>
   <data name="Word_Language" xml:space="preserve">
-    <value>Launguage</value>
+    <value>언어</value>
   </data>
   <data name="Word_Name" xml:space="preserve">
-    <value>Name</value>
+    <value>이름</value>
   </data>
   <data name="Word_Remove" xml:space="preserve">
-    <value>Remove</value>
+    <value>제거</value>
   </data>
   <data name="Word_Reset" xml:space="preserve">
-    <value>Reset</value>
+    <value>초기화</value>
   </data>
   <data name="Word_Setting" xml:space="preserve">
-    <value>Setting</value>
+    <value>설정</value>
   </data>
   <data name="Word_Tool" xml:space="preserve">
-    <value>Tool</value>
+    <value>도구</value>
   </data>
   <data name="ContextMenu_DiffAsHeader" xml:space="preserve">
-    <value>Extract diff with this row as column header.</value>
+    <value>이 행을 열 헤더로 사용하여 차이점 추출</value>
   </data>
   <data name="ContextMenu_SetRowHeader" xml:space="preserve">
-    <value>←Set Row Header</value>
+    <value>←행 헤더 설정</value>
   </data>
   <data name="ContextMenu_ResetRowHeader" xml:space="preserve">
-    <value>←Reset Row Header</value>
+    <value>←행 헤더 초기화</value>
   </data>
   <data name="ContextMenu_SetColumnHeader" xml:space="preserve">
-    <value>↑Set Column Header</value>
+    <value>↑열 헤더 설정</value>
   </data>
   <data name="ContextMenu_ResetColumnHeader" xml:space="preserve">
-    <value>↑Reset Column Header</value>
+    <value>↑열 헤더 초기화</value>
   </data>
   <data name="GroupBox_DisplayFormat" xml:space="preserve">
-    <value>Display Format</value>
+    <value>표시 형식</value>
   </data>
   <data name="Label_RowlHeight" xml:space="preserve">
-    <value>Row Height</value>
+    <value>행 높이</value>
   </data>
   <data name="Label_ColumnWidth" xml:space="preserve">
-    <value>Column Width</value>
+    <value>열 너비</value>
   </data>
   <data name="RadioButton_ShowAll" xml:space="preserve">
-    <value>All</value>
+    <value>모두</value>
   </data>
   <data name="RadioButton_ShowOnlyDiff" xml:space="preserve">
-    <value>Diff</value>
+    <value>차이점만</value>
   </data>
   <data name="ToolTip_Swap" xml:space="preserve">
-    <value>Swap src and dst</value>
+    <value>원본과 대상 바꾸기</value>
   </data>
   <data name="Word_Path" xml:space="preserve">
-    <value>Path</value>
+    <value>경로</value>
   </data>
   <data name="Word_Sheet" xml:space="preserve">
-    <value>Sheet</value>
+    <value>시트</value>
   </data>
   <data name="Word_DstFile" xml:space="preserve">
-    <value>Dst File</value>
+    <value>대상 파일</value>
   </data>
   <data name="Word_SrcFile" xml:space="preserve">
-    <value>Src File</value>
+    <value>원본 파일</value>
   </data>
   <data name="Label_AddedColor" xml:space="preserve">
-    <value>Added Color</value>
+    <value>추가 색상</value>
   </data>
   <data name="Label_ColorModifiedRow" xml:space="preserve">
-    <value>Color Modified Row</value>
+    <value>수정된 행 색상 변경</value>
   </data>
   <data name="Label_RowHeaderColor" xml:space="preserve">
-    <value>Row Header Color</value>
+    <value>행 헤더 색상</value>
   </data>
   <data name="Label_ColumnHeaderColor" xml:space="preserve">
-    <value>Column Header Color</value>
+    <value>열 헤더 색상</value>
   </data>
   <data name="Label_ModifiedColor" xml:space="preserve">
-    <value>Modified Color</value>
+    <value>수정 색상</value>
   </data>
   <data name="Label_ModifiedRowColor" xml:space="preserve">
-    <value>Modified Row Color</value>
+    <value>수정된 행 색상</value>
   </data>
   <data name="Label_RemovedColor" xml:space="preserve">
-    <value>Removed Color</value>
+    <value>삭제 색상</value>
   </data>
   <data name="Label_RowColor" xml:space="preserve">
-    <value>Row Colors</value>
+    <value>행 색상</value>
   </data>
   <data name="Label_SkipFirstBlankColumns" xml:space="preserve">
-    <value>Skip first blank columns</value>
+    <value>첫 빈 열 건너뛰기</value>
   </data>
   <data name="Label_TrimLastBlankColumns" xml:space="preserve">
-    <value>Trim last blank columns</value>
+    <value>마지막 빈 열 제거</value>
   </data>
   <data name="Label_TrimLastBlankRows" xml:space="preserve">
-    <value>Trim last blank rows</value>
+    <value>마지막 빈 행 제거</value>
   </data>
   <data name="Label_AddedRows" xml:space="preserve">
-    <value>[A]Rows({0})</value>
+    <value>[추가]행({0})</value>
   </data>
   <data name="Label_ModifiedCells" xml:space="preserve">
-    <value>[M]Cells({0})</value>
+    <value>[수정]셀({0})</value>
   </data>
   <data name="Label_ModifiedRows" xml:space="preserve">
-    <value>[M]Rows({0})</value>
+    <value>[수정]행({0})</value>
   </data>
   <data name="Label_RemovedRows" xml:space="preserve">
-    <value>[R]Rows({0})</value>
+    <value>[삭제]행({0})</value>
   </data>
   <data name="Word_CaseSensitive" xml:space="preserve">
-    <value>CaseSensitive</value>
+    <value>대소문자 구분</value>
   </data>
   <data name="Word_ExactMatch" xml:space="preserve">
-    <value>ExactMatch</value>
+    <value>정확히 일치</value>
   </data>
   <data name="Word_Regex" xml:space="preserve">
-    <value>Regex</value>
+    <value>정규식</value>
   </data>
   <data name="Word_Search" xml:space="preserve">
-    <value>Search</value>
+    <value>검색</value>
   </data>
   <data name="MenuItem_FileSettings" xml:space="preserve">
-    <value>File Settings</value>
+    <value>파일 설정</value>
   </data>
   <data name="Title_FileSettingEditorWindow" xml:space="preserve">
-    <value>Edit File Setting</value>
+    <value>파일 설정 편집</value>
   </data>
   <data name="Title_FileSettingsWindow" xml:space="preserve">
-    <value>File Settings</value>
+    <value>파일 설정</value>
   </data>
   <data name="Word_RowHeaderIndex" xml:space="preserve">
-    <value>Row Header Index</value>
+    <value>행 헤더 인덱스</value>
   </data>
   <data name="Word_ColumnHeaderIndex" xml:space="preserve">
-    <value>Column Header Index</value>
+    <value>열 헤더 인덱스</value>
   </data>
   <data name="Word_MatchType" xml:space="preserve">
-    <value>Match Type</value>
+    <value>일치 유형</value>
   </data>
   <data name="Word_Font" xml:space="preserve">
-    <value>Font</value>
+    <value>글꼴</value>
   </data>
   <data name="Word_MaxRowHeaderWidth" xml:space="preserve">
-    <value>Max Row Header Width</value>
+    <value>최대 행 헤더 너비</value>
   </data>
   <data name="Msg_ExtractingDiff" xml:space="preserve">
-    <value>Extracting Diff ...</value>
+    <value>차이점 추출 중...</value>
   </data>
   <data name="Msg_ReadingFiles" xml:space="preserve">
-    <value>Reading Files ...</value>
+    <value>파일 읽는 중...</value>
   </data>
   <data name="Msg_WarnSize" xml:space="preserve">
-    <value>There are too many records. Display only around diff.</value>
+    <value>너무 많은 레코드가 있습니다. 차이점 주변만 표시합니다.</value>
   </data>
   <data name="Word_RowHeaderName" xml:space="preserve">
-    <value>Row Header Name</value>
+    <value>행 헤더 이름</value>
   </data>
   <data name="ContextMenu_BuildCellBaseLog" xml:space="preserve">
-    <value>Output Log</value>
+    <value>로그 출력</value>
   </data>
   <data name="ContextMenu_BuildColumnBaseLog" xml:space="preserve">
-    <value>Build Column Base Log</value>
+    <value>열 기반 로그 생성</value>
   </data>
   <data name="ContextMenu_BuildRowBaseLog" xml:space="preserve">
-    <value>Build Row Base Log</value>
+    <value>행 기반 로그 생성</value>
   </data>
   <data name="DefaultLogFormat" xml:space="preserve">
-    <value>Changed "${ROW}"'s "${COL}" to "${RIGHT}" from "${LEFT}"</value>
+    <value>"${ROW}"의 "${COL}"이(가) "${LEFT}"에서 "${RIGHT}"(으)로 변경됨</value>
   </data>
   <data name="DefaultColumnBaseLogFormat" xml:space="preserve">
     <value>${LEFT} → ${RIGHT}</value>
@@ -379,25 +379,25 @@
     <value>${LEFT} → ${RIGHT}</value>
   </data>
   <data name="Label_LogFormat" xml:space="preserve">
-    <value>Modified Cell Log Format</value>
+    <value>수정된 셀 로그 형식</value>
   </data>
   <data name="Label_ColumnBaseLogFormat" xml:space="preserve">
-    <value>Column Base Log Format</value>
+    <value>열 기반 로그 형식</value>
   </data>
   <data name="Label_RowBaseLogFormat" xml:space="preserve">
-    <value>Row Base Log Format</value>
+    <value>행 기반 로그 형식</value>
   </data>
   <data name="MenuItem_Console" xml:space="preserve">
-    <value>Console</value>
+    <value>콘솔</value>
   </data>
   <data name="MenuItem_View" xml:space="preserve">
-    <value>View</value>
+    <value>보기</value>
   </data>
   <data name="Msg_Undisplayable" xml:space="preserve">
-    <value>Not be displayed</value>
+    <value>표시할 수 없음</value>
   </data>
   <data name="Shortcut_Ctrl_Down" xml:space="preserve">
-    <value>Ctrl + Down</value>
+    <value>Ctrl + 아래쪽 화살표</value>
   </data>
   <data name="Shortcut_Ctrl_I" xml:space="preserve">
     <value>Ctrl + I</value>
@@ -409,16 +409,16 @@
     <value>Ctrl + L</value>
   </data>
   <data name="Shortcut_Ctrl_Left" xml:space="preserve">
-    <value>Ctrl + Left</value>
+    <value>Ctrl + 왼쪽 화살표</value>
   </data>
   <data name="Shortcut_Ctrl_O" xml:space="preserve">
     <value>Ctrl + O</value>
   </data>
   <data name="Shortcut_Ctrl_Right" xml:space="preserve">
-    <value>Ctrl + Right</value>
+    <value>Ctrl + 오른쪽 화살표</value>
   </data>
   <data name="Shortcut_Ctrl_Up" xml:space="preserve">
-    <value>Ctrl + Up</value>
+    <value>Ctrl + 위쪽 화살표</value>
   </data>
   <data name="Shortcut_F8" xml:space="preserve">
     <value>F8</value>
@@ -427,122 +427,125 @@
     <value>F9</value>
   </data>
   <data name="Word_Blank" xml:space="preserve">
-    <value>Blank</value>
+    <value>공백</value>
   </data>
   <data name="DefaultLogFormatAddedRow" xml:space="preserve">
-    <value>"${ROW}" was added.</value>
+    <value>"${ROW}"이(가) 추가되었습니다.</value>
   </data>
   <data name="DefaultLogFormatRemovedRow" xml:space="preserve">
-    <value>"${ROW}" was removed.</value>
+    <value>"${ROW}"이(가) 제거되었습니다.</value>
   </data>
   <data name="Label_AddedRowLogFormat" xml:space="preserve">
-    <value>Added Row Log Format</value>
+    <value>추가된 행 로그 형식</value>
   </data>
   <data name="Label_RemovedRowLogFormat" xml:space="preserve">
-    <value>Removed Row Log Format</value>
+    <value>제거된 행 로그 형식</value>
   </data>
   <data name="Label_IgnoreFileSetting" xml:space="preserve">
-    <value>Ignore File Setting</value>
+    <value>파일 설정 무시</value>
   </data>
   <data name="Msg_OutofSheetRange" xml:space="preserve">
-    <value>Sheet index of the applied file settings is out of range.
-Will use first sheet.
-If you don't want to apply file settings, enable "Ignore File Setting".</value>
+    <value>적용된 파일 설정의 시트 인덱스가 범위를 벗어났습니다.
+첫 번째 시트를 사용합니다.
+파일 설정을 적용하지 않으려면 "파일 설정 무시"를 활성화하세요.</value>
   </data>
   <data name="Word_SheetIndex" xml:space="preserve">
-    <value>Sheet Index</value>
+    <value>시트 인덱스</value>
   </data>
   <data name="Word_SheetName" xml:space="preserve">
-    <value>Sheet Name</value>
+    <value>시트 이름</value>
   </data>
   <data name="Word_StartupSheet" xml:space="preserve">
-    <value>Set as Startup Sheet</value>
+    <value>시작 시트로 설정</value>
   </data>
   <data name="GroupBox_LogFormat" xml:space="preserve">
-    <value>Log Format</value>
+    <value>로그 형식</value>
   </data>
   <data name="GroupBox_ReadSetting" xml:space="preserve">
-    <value>Read Setting</value>
+    <value>읽기 설정</value>
   </data>
   <data name="GroupBox_Style" xml:space="preserve">
-    <value>Style</value>
+    <value>스타일</value>
   </data>
   <data name="Label_NotifyEqual" xml:space="preserve">
-    <value>Show dialog if no diff</value>
+    <value>차이가 없으면 대화 상자 표시</value>
   </data>
   <data name="Message_NoDiff" xml:space="preserve">
-    <value>There is no difference.</value>
+    <value>차이점이 없습니다.</value>
   </data>
   <data name="GroupBox_Behavior" xml:space="preserve">
-    <value>Behavior</value>
+    <value>동작</value>
   </data>
   <data name="Label_AlwaysExpandCellDiff" xml:space="preserve">
-    <value>Always expand cell diff</value>
+    <value>항상 셀 차이점 확장</value>
   </data>
   <data name="Label_FitRowHeight" xml:space="preserve">
-    <value>Fit Cell Height</value>
+    <value>셀 높이에 맞추기</value>
   </data>
   <data name="Label_MaxRowHeight" xml:space="preserve">
-    <value>Max Row Height</value>
+    <value>최대 행 높이</value>
   </data>
   <data name="Label_MinRowHeight" xml:space="preserve">
-    <value>Min Row Height</value>
+    <value>최소 행 높이</value>
   </data>
   <data name="Label_FocusFirstDiff" xml:space="preserve">
-    <value>Focus first diff when extracted</value>
+    <value>추출 시 첫 번째 차이점으로 포커스 이동</value>
   </data>
   <data name="ContextMenu_CopyAsCsv" xml:space="preserve">
-    <value>Copy as CSV</value>
+    <value>CSV로 복사</value>
   </data>
   <data name="ContextMenu_CopyAsTsv" xml:space="preserve">
-    <value>Copy as TSV</value>
+    <value>TSV로 복사</value>
   </data>
   <data name="Button_NextSheet" xml:space="preserve">
-    <value>Next</value>
+    <value>다음</value>
   </data>
   <data name="Button_PrevSheet" xml:space="preserve">
-    <value>Prev</value>
+    <value>이전</value>
   </data>
   <data name="Button_Swap" xml:space="preserve">
-    <value>Swap</value>
+    <value>바꾸기</value>
   </data>
   <data name="Label_CompareSheetName" xml:space="preserve">
-    <value>Compare Sheet Names</value>
+    <value>시트 이름 비교</value>
   </data>
   <data name="Label_MoveNextSheetWhenScrolledBeyondEnd" xml:space="preserve">
-    <value>Move to next sheets when scrolled beyond end</value>
+    <value>끝까지 스크롤하면 다음 시트로 이동</value>
   </data>
   <data name="Label_MovePrevSheetWhenScrolledBeyondStart" xml:space="preserve">
-    <value>Move to prev sheets when scrolled beyond start</value>
+    <value>처음까지 스크롤하면 이전 시트로 이동</value>
   </data>
   <data name="Label_UseBatchExtraction" xml:space="preserve">
-    <value>Use Batch Extraction</value>
+    <value>일괄 추출 사용</value>
   </data>
   <data name="ToolTip_ExtractDiff" xml:space="preserve">
-    <value>Extract diff</value>
+    <value>차이점 추출</value>
   </data>
   <data name="ToolTip_NextSheet" xml:space="preserve">
-    <value>Extract and show next sheets diff (Ctrl + PageDown)</value>
+    <value>다음 시트 차이점 추출 및 표시 (Ctrl + PageDown)</value>
   </data>
   <data name="ToolTip_PrevSheet" xml:space="preserve">
-    <value>Extract and show prev sheets diff (Ctrl + PageUp)</value>
+    <value>이전 시트 차이점 추출 및 표시 (Ctrl + PageUp)</value>
   </data>
   <data name="Description_MakeSheetPairsByname" xml:space="preserve">
-    <value>*Sheet included only on one side is ignored.</value>
+    <value>*한쪽에만 포함된 시트는 무시됩니다.</value>
   </data>
   <data name="Description_UseBatchExtraction" xml:space="preserve">
-    <value>*Startup sheet setting is ignored.</value>
+    <value>*시작 시트 설정은 무시됩니다.</value>
   </data>
   <data name="Label_MakeSheetPairsByName" xml:space="preserve">
-    <value>Make sheet pair and order by name</value>
+    <value>이름별로 시트 쌍 생성 및 정렬</value>
   </data>
   <data name="Message_NoDiffAllSheet" xml:space="preserve">
-    <value>There is no difference in all sheets.</value>
+    <value>모든 시트에 차이점이 없습니다.</value>
   </data>
   <data name="Word_Chinese" xml:space="preserve">
-    <value>Chiniese</value>
+    <value>중국어</value>
+  </data>
+  <data name="Label_RowHeight" xml:space="preserve">
+    <value>행 높이</value>
   </data>
   <data name="Word_Korean" xml:space="preserve">
-    <value>Korean</value>
+    <value>한국어</value>
   </data>
 </root>
