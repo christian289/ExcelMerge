@@ -480,10 +480,11 @@ namespace ExcelMerge.GUI.Views
             }
             else
             {
-                diffConfig = new ExcelSheetDiffConfig();
-
-                diffConfig.SrcSheetIndex = Math.Max(SrcSheetCombobox.SelectedIndex, 0);
-                diffConfig.DstSheetIndex = Math.Max(DstSheetCombobox.SelectedIndex, 0);
+                diffConfig = new ExcelSheetDiffConfig
+                {
+                    SrcSheetIndex = Math.Max(SrcSheetCombobox.SelectedIndex, 0),
+                    DstSheetIndex = Math.Max(DstSheetCombobox.SelectedIndex, 0)
+                };
             }
 
             return fileSetting;
