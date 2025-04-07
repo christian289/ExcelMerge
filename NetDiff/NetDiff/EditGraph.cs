@@ -77,8 +77,8 @@ namespace NetDiff
         public EditGraph(
             IEnumerable<T> seq1, IEnumerable<T> seq2)
         {
-            this.seq1 = seq1.ToArray();
-            this.seq2 = seq2.ToArray();
+            this.seq1 = [.. seq1];
+            this.seq2 = [.. seq2];
             endpoint = new Point(this.seq1.Length, this.seq2.Length);
             offset = this.seq2.Length;
         }
@@ -86,10 +86,10 @@ namespace NetDiff
         public List<Point> CalculatePath(DiffOption<T> option)
         {
             if (seq1.Length == 0)
-                return Enumerable.Range(0, seq2.Length + 1).Select(i => new Point(0, i)).ToList();
+                return [.. Enumerable.Range(0, seq2.Length + 1).Select(i => new Point(0, i))];
 
             if (seq2.Length == 0)
-                return Enumerable.Range(0, seq1.Length + 1).Select(i => new Point(i, 0)).ToList();
+                return [.. Enumerable.Range(0, seq1.Length + 1).Select(i => new Point(i, 0))];
 
             this.option = option;
 

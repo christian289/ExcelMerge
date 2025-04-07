@@ -11,12 +11,12 @@ namespace ExcelMerge
         public ExcelRowDiff(int index)
         {
             Index = index;
-            Cells = new SortedDictionary<int, ExcelCellDiff>();
+            Cells = [];
         }
 
         public ExcelCellDiff CreateCell(ExcelCell src, ExcelCell dst, int columnIndex, ExcelCellStatus status)
         {
-            var cell = new ExcelCellDiff(columnIndex, Index, src, dst, status);
+            ExcelCellDiff cell = new(columnIndex, Index, src, dst, status);
             Cells.Add(cell.ColumnIndex, cell);
 
             return cell;

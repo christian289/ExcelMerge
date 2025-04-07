@@ -156,7 +156,7 @@ namespace ExcelMerge
         }
 
         /// <summary>
-        /// Column Layout 맞추기
+        /// Column 수 똑같이 맞추기
         /// </summary>
         /// <param name="src"></param>
         /// <param name="dst"></param>
@@ -285,91 +285,114 @@ namespace ExcelMerge
             DiffResult<ExcelRow>[] resultArray = OptimizeSheetLayout(src, dst, columnStatusMap);
 
             // 2. 키값에 따라 맵 생성
-            var srcKeyMap = new Dictionary<string, ExcelRow>();
-            var dstKeyMap = new Dictionary<string, ExcelRow>();
+            Dictionary<string, ExcelRow> srcKeyMap = [];
+            Dictionary<string, ExcelRow> dstKeyMap = [];
 
             #region 소스와 대상 Row를 키 값에 따라 보관
-            foreach (var row in src.Rows.Values)
+            foreach (ExcelRow row in src.Rows.Values)
             {
+                string keyValue = string.Empty;
                 if (srcKeyColumnIndex.Value < row.Cells.Count)
-                {
-                    var keyValue = row.Cells[srcKeyColumnIndex.Value].Value;
-                    if (!string.IsNullOrEmpty(keyValue) && !srcKeyMap.ContainsKey(keyValue))
-                        srcKeyMap.Add(keyValue, row);
-                }
+                    keyValue = row.Cells[srcKeyColumnIndex.Value].Value;
+
+                string mapKey = !string.IsNullOrEmpty(keyValue) ? keyValue : $"__NO_KEY_SRC_{row.Index}";
+                srcKeyMap.TryAdd(mapKey, row);
             }
 
-            foreach (var row in dst.Rows.Values)
+            foreach (ExcelRow row in dst.Rows.Values)
             {
+                string keyValue = string.Empty;
                 if (dstKeyColumnIndex.Value < row.Cells.Count)
-                {
-                    var keyValue = row.Cells[dstKeyColumnIndex.Value].Value;
-                    if (!string.IsNullOrEmpty(keyValue) && !dstKeyMap.ContainsKey(keyValue))
-                        dstKeyMap.Add(keyValue, row);
-                }
+                    keyValue = row.Cells[dstKeyColumnIndex.Value].Value;
+
+                // 키 값이 없어도 행 자체는 매핑 (빈 키 또는 인덱스 기반 키 사용)
+                string mapKey = !string.IsNullOrEmpty(keyValue) ? keyValue : $"__NO_KEY_DST_{row.Index}";
+                dstKeyMap.TryAdd(mapKey, row);
             }
             #endregion
 
             // 3. 키값 기반으로 Row 비교
-            var sheetDiff = new ExcelSheetDiff(src, dst);
-            var rowDiffList = new List<DiffResult<ExcelRow>>();
+            ExcelSheetDiff sheetDiff = new(src, dst);
+            List<DiffResult<ExcelRow>> rowDiffList = [];
 
-            // 추가된 Row 찾기 (dst에는 있지만 src에는 없는 키)
-            foreach (var keyValue in dstKeyMap.Keys)
+            // 삭제된 행: 소스에만 있는 키
+            foreach (KeyValuePair<string, ExcelRow> entry in srcKeyMap)
             {
-                if (!srcKeyMap.ContainsKey(keyValue))
+                string key = entry.Key;
+                ExcelRow srcRow = entry.Value;
+
+                // 대상에 같은 키가 없으면 "삭제됨"
+                if (!dstKeyMap.TryGetValue(key, out ExcelRow dstRow) || key.StartsWith("__NO_KEY_SRC_"))
+                    rowDiffList.Add(new DiffResult<ExcelRow>(srcRow, null, DiffStatus.Deleted));
+                else
                 {
-                    var dstRow = dstKeyMap[keyValue];
-                    var result = new DiffResult<ExcelRow>(null, dstRow, DiffStatus.Inserted);
-                    rowDiffList.Add(result);
+                    bool isModified = !CompareRowContents(srcRow, dstRow);
+                    var status = isModified ? DiffStatus.Modified : DiffStatus.Equal;
+                    rowDiffList.Add(new DiffResult<ExcelRow>(srcRow, dstRow, status));
+
+                    // 처리된 대상 키 제거
+                    dstKeyMap.Remove(key);
                 }
             }
 
-            // 삭제된 Row 찾기 (src에는 있지만 dst에는 없는 키)
-            foreach (var keyValue in srcKeyMap.Keys)
-            {
-                if (!dstKeyMap.ContainsKey(keyValue))
-                {
-                    var srcRow = srcKeyMap[keyValue];
-                    var result = new DiffResult<ExcelRow>(srcRow, null, DiffStatus.Deleted);
-                    rowDiffList.Add(result);
-                }
-            }
+            // 추가된 행: 대상에만 있는 남은 키
+            foreach (KeyValuePair<string, ExcelRow> entry in dstKeyMap)
+                rowDiffList.Add(new DiffResult<ExcelRow>(null, entry.Value, DiffStatus.Inserted));
 
             // 업데이트된 Row 또는 동일한 Row 찾기 (src와 dst 모두에 있는 키)
-            foreach (var keyValue in srcKeyMap.Keys)
+            foreach (string keyValue in srcKeyMap.Keys)
             {
-                if (dstKeyMap.TryGetValue(keyValue, out ExcelRow dstRow))
+                if (!dstKeyMap.TryGetValue(keyValue, out ExcelRow dstRow))
+                    continue;
+
+                ExcelRow srcRow = srcKeyMap[keyValue];
+
+                // 셀의 내용을 비교하여 변경 여부 판단
+                bool isModified = false;
+                int maxCellCount = Math.Max(srcRow.Cells.Count, dstRow.Cells.Count);
+
+                for (int i = 0; i < maxCellCount; i++)
                 {
-                    var srcRow = srcKeyMap[keyValue];
+                    string srcValue = i < srcRow.Cells.Count ? srcRow.Cells[i].Value : string.Empty;
+                    string dstValue = i < dstRow.Cells.Count ? dstRow.Cells[i].Value : string.Empty;
 
-                    // 셀의 내용을 비교하여 변경 여부 판단
-                    bool isModified = false;
-                    int maxCellCount = Math.Max(srcRow.Cells.Count, dstRow.Cells.Count);
-
-                    for (int i = 0; i < maxCellCount; i++)
+                    if (srcValue != dstValue)
                     {
-                        string srcValue = i < srcRow.Cells.Count ? srcRow.Cells[i].Value : string.Empty;
-                        string dstValue = i < dstRow.Cells.Count ? dstRow.Cells[i].Value : string.Empty;
-
-                        if (srcValue != dstValue)
-                        {
-                            isModified = true;
-                            break;
-                        }
+                        isModified = true;
+                        break;
                     }
-
-                    var status = isModified ? DiffStatus.Modified : DiffStatus.Equal;
-                    var result = new DiffResult<ExcelRow>(srcRow, dstRow, status);
-                    rowDiffList.Add(result);
                 }
+
+                var status = isModified ? DiffStatus.Modified : DiffStatus.Equal;
+                var result = new DiffResult<ExcelRow>(srcRow, dstRow, status);
+                rowDiffList.Add(result);
             }
 
             // 4. 비교 결과를 적용
-            resultArray = rowDiffList.ToArray();
-            DiffCells(resultArray, sheetDiff, columnStatusMap);
+            // 행 인덱스 기준으로 정렬하여 원래 순서 유지
+            var orderedResults = rowDiffList
+                .OrderBy(r => r.Obj1 != null ? r.Obj1.Index : int.MaxValue)
+                .ThenBy(r => r.Obj2 != null ? r.Obj2.Index : int.MaxValue)
+                .ToArray();
+            DiffCells(orderedResults, sheetDiff, columnStatusMap);
 
             return sheetDiff;
+        }
+
+        private static bool CompareRowContents(ExcelRow row1, ExcelRow row2)
+        {
+            int maxCellCount = Math.Max(row1.Cells.Count, row2.Cells.Count);
+
+            for (int i = 0; i < maxCellCount; i++)
+            {
+                string value1 = i < row1.Cells.Count ? row1.Cells[i].Value : string.Empty;
+                string value2 = i < row2.Cells.Count ? row2.Cells[i].Value : string.Empty;
+
+                if (value1 != value2)
+                    return false;
+            }
+
+            return true;
         }
 
         private static ExcelSheetDiff DiffWithoutKeyColumn(
@@ -428,8 +451,8 @@ namespace ExcelMerge
 
         private IEnumerable<ExcelColumn> CreateColumns()
         {
-            if (!Rows.Any())
-                return Enumerable.Empty<ExcelColumn>();
+            if (Rows.Count == 0)
+                return [];
 
             var columnCount = Rows.Max(r => r.Value.Cells.Count);
             var columns = new ExcelColumn[columnCount];
@@ -454,7 +477,7 @@ namespace ExcelMerge
             ExcelSheetDiff sheetDiff,
             Dictionary<int, ExcelColumnStatus> columnStatusMap)
         {
-            foreach (var result in results)
+            foreach (DiffResult<ExcelRow> result in results)
             {
                 switch (result.Status)
                 {
@@ -463,10 +486,10 @@ namespace ExcelMerge
                         DiffCellsCaseEqual(result, sheetDiff, columnStatusMap);
                         break;
                     case DiffStatus.Deleted:
-                        DiffCellsCaseDeleted(result, sheetDiff, columnStatusMap);
+                        DiffCellsCaseDeleted(result, sheetDiff);
                         break;
                     case DiffStatus.Inserted:
-                        DiffCellsCaseInserted(result, sheetDiff, columnStatusMap);
+                        DiffCellsCaseInserted(result, sheetDiff);
                         break;
                 }
             }
@@ -496,14 +519,13 @@ namespace ExcelMerge
             ExcelSheetDiff sheetDiff,
             Dictionary<int, ExcelColumnStatus> columnStatusMap)
         {
-            var row = sheetDiff.CreateRow();
-
-            var equalizedCells = EqualizeColumnCount(result.Obj1.Cells, result.Obj2.Cells, columnStatusMap);
-            var columnIndex = 0;
-            foreach (var pair in equalizedCells)
+            ExcelRowDiff row = sheetDiff.CreateRow();
+            IEnumerable<Tuple<ExcelCell, ExcelCell>> equalizedCells = EqualizeColumnCount(result.Obj1.Cells, result.Obj2.Cells, columnStatusMap);
+            int columnIndex = 0;
+            foreach (Tuple<ExcelCell, ExcelCell> pair in equalizedCells)
             {
-                var srcCell = pair.Item1;
-                var dstCell = pair.Item2;
+                ExcelCell srcCell = pair.Item1;
+                ExcelCell dstCell = pair.Item2;
 
                 if (srcCell != null && dstCell != null)
                 {
@@ -536,33 +558,25 @@ namespace ExcelMerge
             }
         }
 
-        private static void DiffCellsCaseDeleted(
-            DiffResult<ExcelRow> result, ExcelSheetDiff sheetDiff, Dictionary<int, ExcelColumnStatus> columnStatusMap)
+        private static void DiffCellsCaseDeleted(DiffResult<ExcelRow> result, ExcelSheetDiff sheetDiff)
         {
-            var row = sheetDiff.CreateRow();
-
-            var columnIndex = 0;
-            foreach (var cell1 in result.Obj1.Cells)
+            ExcelRowDiff row = sheetDiff.CreateRow();
+            int columnIndex = 0;
+            foreach (ExcelCell cell1 in result.Obj1.Cells)
             {
-                var cell2 = new ExcelCell(string.Empty, cell1.OriginalColumnIndex, cell1.OriginalRowIndex);
-                row.CreateCell(cell1, cell2, columnIndex, ExcelCellStatus.Removed);
-
-                columnIndex++;
+                ExcelCell cell2 = new(string.Empty, cell1.OriginalColumnIndex, cell1.OriginalRowIndex);
+                row.CreateCell(cell1, cell2, columnIndex++, ExcelCellStatus.Removed);
             }
         }
 
-        private static void DiffCellsCaseInserted(
-            DiffResult<ExcelRow> result, ExcelSheetDiff sheetDiff, Dictionary<int, ExcelColumnStatus> columnStatusMap)
+        private static void DiffCellsCaseInserted(DiffResult<ExcelRow> result, ExcelSheetDiff sheetDiff)
         {
-            var row = sheetDiff.CreateRow();
-
-            var columnIndex = 0;
-            foreach (var cell2 in result.Obj2.Cells)
+            ExcelRowDiff row = sheetDiff.CreateRow();
+            int columnIndex = 0;
+            foreach (ExcelCell cell2 in result.Obj2.Cells)
             {
-                var cell1 = new ExcelCell(string.Empty, cell2.OriginalColumnIndex, cell2.OriginalRowIndex);
-                row.CreateCell(cell1, cell2, columnIndex, ExcelCellStatus.Added);
-
-                columnIndex++;
+                ExcelCell cell1 = new(string.Empty, cell2.OriginalColumnIndex, cell2.OriginalRowIndex);
+                row.CreateCell(cell1, cell2, columnIndex++, ExcelCellStatus.Added);
             }
         }
     }
