@@ -336,12 +336,12 @@
                             <Label Margin="10,0,0,0"
                                    VerticalAlignment="Center"
                                    Content="키 컬럼명:" />
-                            <TextBox x:Name="KeyColumnNameTextBox"
+                            <TextBox x:Name="KeyColumnNamesTextBox"
                                      Width="100"
                                      Margin="3"
                                      VerticalAlignment="Center"
                                      IsEnabled="{Binding UseKeyColumn}"
-                                     Text="{Binding KeyColumnName}"
+                                     Text="{Binding KeyColumnNames}"
                                      ToolTip="해당 컬럼명을 입력하세요" />
                         </StackPanel>
                     </GroupBox>

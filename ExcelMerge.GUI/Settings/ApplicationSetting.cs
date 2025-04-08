@@ -277,11 +277,11 @@ namespace ExcelMerge.GUI.Settings
             set { SetProperty(ref useKeyColumnByDefault, value); }
         }
 
-        private string defaultKeyColumnName = string.Empty;
-        public string DefaultKeyColumnName
+        private string defaultKeyColumnNames = string.Empty;
+        public string DefaultKeyColumnNames
         {
-            get { return defaultKeyColumnName; }
-            set { SetProperty(ref defaultKeyColumnName, value); }
+            get { return defaultKeyColumnNames; }
+            set { SetProperty(ref defaultKeyColumnNames, value); }
         }
 
         public static ApplicationSetting Load()

@@ -559,8 +559,8 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0"
                                    VerticalAlignment="Center"
-                                   Content="{x:Static props:Resources.Label_KeyColumnName}" />
-                            <TextBox Grid.Column="1" Text="{Binding Setting.DefaultKeyColumnName}" />
+                                   Content="{x:Static props:Resources.Label_KeyColumnNames}" />
+                            <TextBox Grid.Column="1" Text="{Binding Setting.DefaultKeyColumnNames}" />
                         </Grid>
                     </StackPanel>
                 </GroupBox>

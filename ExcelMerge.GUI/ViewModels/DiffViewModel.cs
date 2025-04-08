@@ -158,11 +158,11 @@ namespace ExcelMerge.GUI.ViewModels
             set { SetProperty(ref useKeyColumn, value); }
         }
 
-        private string keyColumnName;
-        public string KeyColumnName
+        private string keyColumnNames;
+        public string KeyColumnNames
         {
-            get { return keyColumnName; }
-            set { SetProperty(ref keyColumnName, value); }
+            get { return keyColumnNames; }
+            set { SetProperty(ref keyColumnNames, value); }
         }
 
         public DiffViewModel()
@@ -175,7 +175,7 @@ namespace ExcelMerge.GUI.ViewModels
             DstPath = string.Empty;
 
             UseKeyColumn = App.Instance.Setting.UseKeyColumnByDefault;
-            KeyColumnName = App.Instance.Setting.DefaultKeyColumnName;
+            KeyColumnNames = App.Instance.Setting.DefaultKeyColumnNames;
         }
 
         public DiffViewModel(string src, string dst, MainWindowViewModel mwv) : this()

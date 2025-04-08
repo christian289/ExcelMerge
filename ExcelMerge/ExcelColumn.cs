@@ -53,19 +53,19 @@ internal class HeaderComparer : IEqualityComparer<ExcelColumn>
 
     public HeaderComparer(string headerIndicesStr = "")
     {
-        headerIndices = new HashSet<int>();
+        headerIndices = [];
         if (!string.IsNullOrEmpty(headerIndicesStr))
         {
             var indices = headerIndicesStr.Split(',')
                 .Select(s => int.TryParse(s.Trim(), out int index) ? index : -1)
                 .Where(i => i >= 0);
 
-            foreach (var idx in indices)
+            foreach (int idx in indices)
                 headerIndices.Add(idx);
         }
 
         // 인덱스가 비어있으면 기본값 추가
-        if (!headerIndices.Any())
+        if (headerIndices.Count == 0)
             headerIndices.Add(0);
     }
 
@@ -74,28 +74,41 @@ internal class HeaderComparer : IEqualityComparer<ExcelColumn>
         if (x == null || y == null)
             return false;
 
-        foreach (var headerIndex in headerIndices)
+        if (headerIndices.Count != 0)
         {
-            var valueX = x.Cells.ElementAtOrDefault(headerIndex)?.Value ?? string.Empty;
-            var valueY = y.Cells.ElementAtOrDefault(headerIndex)?.Value ?? string.Empty;
+            foreach (var headerIndex in headerIndices)
+            {
+                var valueX = x.Cells.ElementAtOrDefault(headerIndex)?.Value ?? string.Empty;
+                var valueY = y.Cells.ElementAtOrDefault(headerIndex)?.Value ?? string.Empty;
 
-            if (!valueX.Equals(valueY))
-                return false;
+                if (!valueX.Equals(valueY))
+                    return false;
+            }
+            return true;
         }
 
-        return true;
+        // 기존 방식 유지 (단일 헤더 인덱스)
+        var defaultValueX = x.Cells.ElementAtOrDefault(x.HeaderIndex)?.Value ?? string.Empty;
+        var defaultValueY = y.Cells.ElementAtOrDefault(y.HeaderIndex)?.Value ?? string.Empty;
+
+        return defaultValueX.Equals(defaultValueY);
     }
 
     public int GetHashCode(ExcelColumn obj)
     {
-        int hashCode = 17;
-
-        foreach (var headerIndex in headerIndices)
+        if (headerIndices.Count != 0)
         {
-            string value = obj.Cells.ElementAtOrDefault(headerIndex)?.Value ?? string.Empty;
-            hashCode = hashCode * 31 + value.GetHashCode();
+            int hashCode = 17;
+
+            foreach (var headerIndex in headerIndices)
+            {
+                string value = obj.Cells.ElementAtOrDefault(headerIndex)?.Value ?? string.Empty;
+                hashCode = hashCode * 31 + value.GetHashCode();
+            }
+
+            return hashCode;
         }
 
-        return hashCode;
+        return obj.Cells.ElementAtOrDefault(obj.HeaderIndex)?.Value.GetHashCode() ?? string.Empty.GetHashCode();
     }
 }

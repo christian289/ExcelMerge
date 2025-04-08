@@ -7,5 +7,5 @@ public class ExcelSheetDiffConfig
     public int SrcHeaderIndex { get; set; }
     public int DstHeaderIndex { get; set; }
     public bool UseKeyColumn { get; set; }
-    public string KeyColumnName { get; set; }
+    public string KeyColumnNames { get; set; }
 }

@@ -167,7 +167,7 @@ namespace ExcelMerge.GUI.Views
             if (viewModel != null)
             {
                 config.UseKeyColumn = viewModel.UseKeyColumn;
-                config.KeyColumnName = viewModel.KeyColumnName;
+                config.KeyColumnNames = viewModel.KeyColumnNames;
             }
 
             if (fileSetting != null)

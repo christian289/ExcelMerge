@@ -423,9 +423,9 @@ namespace ExcelMerge.GUI.Properties {
         /// <summary>
         ///   查找类似 Key Column Name 的本地化字符串。
         /// </summary>
-        public static string Label_KeyColumnName {
+        public static string Label_KeyColumnNames {
             get             {
-                return ResourceManager.GetString("Label_KeyColumnName", resourceCulture);
+                return ResourceManager.GetString("Label_KeyColumnNames", resourceCulture);
             }
         }
 

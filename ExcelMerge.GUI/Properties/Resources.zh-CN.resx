@@ -509,7 +509,7 @@
   <data name="Label_ProcessStartKeyColumnMode" xml:space="preserve">
     <value />
   </data>
-  <data name="Label_KeyColumnName" xml:space="preserve">
+  <data name="Label_KeyColumnNames" xml:space="preserve">
     <value />
   </data>
   <data name="Label_FirstRowIsHeader" xml:space="preserve">

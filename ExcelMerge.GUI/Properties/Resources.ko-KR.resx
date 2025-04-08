@@ -551,7 +551,7 @@
   <data name="Label_ProcessStartKeyColumnMode" xml:space="preserve">
     <value>프로그램 시작 시 Key Column 모드로 동작</value>
   </data>
-  <data name="Label_KeyColumnName" xml:space="preserve">
+  <data name="Label_KeyColumnNames" xml:space="preserve">
     <value>Key Column 이름</value>
   </data>
   <data name="Label_RowHeight" xml:space="preserve">

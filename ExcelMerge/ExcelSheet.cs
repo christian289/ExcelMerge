@@ -143,7 +143,7 @@ public class ExcelSheet
         IEnumerable<ExcelColumn> dstColumns = dst.CreateColumns();
         Dictionary<int, ExcelColumnStatus> columnStatusMap = CreateColumnStatusMap(srcColumns, dstColumns, config);
 
-        if (config.UseKeyColumn && !string.IsNullOrEmpty(config.KeyColumnName))
+        if (config.UseKeyColumn && !string.IsNullOrEmpty(config.KeyColumnNames))
             return DiffWithKeyColumn(src, dst, config, srcColumns, dstColumns, columnStatusMap);
         else
             return DiffWithoutKeyColumn(src, dst, config, srcColumns, dstColumns, columnStatusMap);
@@ -244,7 +244,7 @@ public class ExcelSheet
             foreach (var column in srcColumns)
             {
                 if (column.Cells.Count > config.SrcHeaderIndex &&
-                    column.Cells[config.SrcHeaderIndex].Value == config.KeyColumnName)
+                    column.Cells[config.SrcHeaderIndex].Value == config.KeyColumnNames)
                 {
                     srcKeyColumnIndex = colIndex;
                     break;
@@ -259,7 +259,7 @@ public class ExcelSheet
             foreach (var column in dstColumns)
             {
                 if (column.Cells.Count > config.DstHeaderIndex &&
-                    column.Cells[config.DstHeaderIndex].Value == config.KeyColumnName)
+                    column.Cells[config.DstHeaderIndex].Value == config.KeyColumnNames)
                 {
                     dstKeyColumnIndex = colIndex;
                     break;
@@ -410,18 +410,18 @@ public class ExcelSheet
         IEnumerable<ExcelColumn> dstColumns,
         ExcelSheetDiffConfig config)
     {
-        var option = new DiffOption<ExcelColumn>();
+        DiffOption<ExcelColumn> option = new();
 
-        if (config.SrcHeaderIndex >= 0)
+        if (config.SrcHeaderIndex >= 0 || !string.IsNullOrEmpty(config.KeyColumnNames))
         {
-            option.EqualityComparer = new HeaderComparer();
-            foreach (var sc in srcColumns)
+            option.EqualityComparer = new HeaderComparer(config.KeyColumnNames);
+            foreach (ExcelColumn sc in srcColumns)
                 sc.HeaderIndex = config.SrcHeaderIndex;
         }
 
         if (config.DstHeaderIndex >= 0)
         {
-            foreach (var dc in dstColumns)
+            foreach (ExcelColumn dc in dstColumns)
                 dc.HeaderIndex = config.DstHeaderIndex;
         }
 

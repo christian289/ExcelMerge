@@ -551,7 +551,7 @@ If you don't want to apply file settings, enable "Ignore File Setting".</value>
   <data name="Label_ProcessStartKeyColumnMode" xml:space="preserve">
     <value>Process Start Using Key Column Mode</value>
   </data>
-  <data name="Label_KeyColumnName" xml:space="preserve">
+  <data name="Label_KeyColumnNames" xml:space="preserve">
     <value>Key Column Name</value>
   </data>
   <data name="Label_FirstRowIsHeader" xml:space="preserve">
