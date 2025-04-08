@@ -1,7 +1,4 @@
-﻿using System;
-using Unity;
-
-namespace ExcelMerge.GUI.Views
+﻿namespace ExcelMerge.GUI.Views.DiffViewEvent
 {
     enum TargetType
     {

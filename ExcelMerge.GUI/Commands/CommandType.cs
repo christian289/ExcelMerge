@@ -1,9 +1,8 @@
-﻿namespace ExcelMerge.GUI.Commands
+﻿namespace ExcelMerge.GUI.Commands;
+
+public enum CommandType
 {
-    public enum CommandType
-    {
-        None,
-        Diff,
-        Merge,
-    }
+    None,
+    Diff,
+    Merge,
 }

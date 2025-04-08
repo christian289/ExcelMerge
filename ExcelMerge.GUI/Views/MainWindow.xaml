@@ -10,7 +10,7 @@
         Title="ExcelMerge"
         Width="{Binding Source={x:Static SystemParameters.PrimaryScreenWidth}, Converter={vc:PercentageConverter}, ConverterParameter='0.8'}"
         Height="{Binding Source={x:Static SystemParameters.PrimaryScreenHeight}, Converter={vc:PercentageConverter}, ConverterParameter='0.8'}"
-        Icon="/ExcelMerge.GUI;component/app.ico"
+        Icon="/ExcelMerge;component/app.ico"
         KeyDown="Window_KeyDown"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"

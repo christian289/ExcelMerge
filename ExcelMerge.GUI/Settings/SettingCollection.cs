@@ -1,43 +1,37 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using System.Linq;
+﻿namespace ExcelMerge.GUI.Settings;
 
-namespace ExcelMerge.GUI.Settings
+[Serializable]
+public class SettingCollection<T> : ObservableCollection<T>, IEquatable<SettingCollection<T>> where T : class
 {
-    [Serializable]
-    public class SettingCollection<T> : ObservableCollection<T>, IEquatable<SettingCollection<T>> where T : class
+    public SettingCollection() : base() { }
+    public SettingCollection(IEnumerable<T> settings) : base(settings) { }
+
+    public override bool Equals(object obj)
     {
-        public SettingCollection() : base() { }
-        public SettingCollection(IEnumerable<T> settings) : base(settings) { }
+        return Equals(obj as SettingCollection<T>);
+    }
 
-        public override bool Equals(object obj)
+    public override int GetHashCode()
+    {
+        var hash = 17;
+
+        unchecked
         {
-            return Equals(obj as SettingCollection<T>);
-        }
-
-        public override int GetHashCode()
-        {
-            var hash = 17;
-
-            unchecked
+            foreach (var item in this)
             {
-                foreach (var item in this)
-                {
-                    if (item != null)
-                        hash = hash * 23 + item.GetHashCode();
-                }
+                if (item != null)
+                    hash = hash * 23 + item.GetHashCode();
             }
-
-            return hash;
         }
 
-        public bool Equals(SettingCollection<T> other)
-        {
-            if (other == null)
-                return false;
+        return hash;
+    }
 
-            return this.SequenceEqual(other);
-        }
+    public bool Equals(SettingCollection<T> other)
+    {
+        if (other == null)
+            return false;
+
+        return this.SequenceEqual(other);
     }
 }

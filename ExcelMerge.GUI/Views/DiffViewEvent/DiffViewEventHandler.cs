@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
-using System.Windows.Documents;
-using System.Windows.Controls;
-using System.Windows.Shapes;
-using System.Windows.Media;
-using System.Windows.Input;
-using FastWpfGrid;
-using Unity;
+﻿using FastWpfGrid;
 using SKCore.Collection;
 using SKCore.Wpf.Controls.Utilities;
 using ExcelMerge.GUI.Models;
 using ExcelMerge.GUI.Settings;
 
-namespace ExcelMerge.GUI.Views
+namespace ExcelMerge.GUI.Views.DiffViewEvent
 {
     class DiffViewEventHandler : IDataGridEventListener, ILocationGridEventListener, IViewportEventListener, IValueTextBoxEventListener
     {
@@ -328,8 +318,8 @@ namespace ExcelMerge.GUI.Views
 
             var rowSpan = Grid.GetRowSpan(viewport);
             var currentRow = Grid.GetRow(viewport);
-            var row = currentRow - (Math.Sign(me.Delta) * rowSpan / 2);
-            var last = Math.Max((e.Sender.RowDefinitions.Count) - Grid.GetRowSpan(viewport), 0);
+            var row = currentRow - Math.Sign(me.Delta) * rowSpan / 2;
+            var last = Math.Max(e.Sender.RowDefinitions.Count - Grid.GetRowSpan(viewport), 0);
             row = Math.Max(row, 0);
             row = Math.Min(row, last);
 
@@ -491,7 +481,7 @@ namespace ExcelMerge.GUI.Views
                     Grid.SetRowSpan(rectangle, rowSpan);
                     Grid.SetColumn(rectangle, section.First().Key);
                     Grid.SetColumnSpan(rectangle, colSpan);
-                    Grid.SetZIndex(rectangle, 0);
+                    Panel.SetZIndex(rectangle, 0);
 
                     locationGrid.Children.Add(rectangle);
                 }

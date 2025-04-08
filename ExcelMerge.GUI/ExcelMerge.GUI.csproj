@@ -12,17 +12,16 @@
     <AssemblyVersion>1.4.0.0</AssemblyVersion>
     <FileVersion>1.4.0.0</FileVersion>
     <Copyright>Copyright ©skanmera  2017</Copyright>
+    <AssemblyName>ExcelMerge</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ExcelMerge\ExcelMerge.csproj" />
+    <ProjectReference Include="..\ExcelMerge.Core\ExcelMerge.Core.csproj" />
     <ProjectReference Include="..\FastWpfGrid\FastWpfGrid\FastWpfGrid.csproj" />
     <ProjectReference Include="..\FastWpfGrid\WriteableBitmapEx\WriteableBitmapEx.Wpf.csproj" />
-    <ProjectReference Include="..\NetDiff\NetDiff\NetDiff.csproj" />
     <ProjectReference Include="..\SKCore\SKCore.Wpf\SKCore.Wpf.csproj" />
-    <ProjectReference Include="..\SKCore\SKCore\SKCore.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="app.ico" />

@@ -1,12 +1,9 @@
-﻿using System.Windows;
+﻿namespace ExcelMerge.GUI.Views;
 
-namespace ExcelMerge.GUI.Views
+public partial class ExternalCommandEditorWindow : Window
 {
-    public partial class ExternalCommandEditorWindow : Window
+    public ExternalCommandEditorWindow()
     {
-        public ExternalCommandEditorWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

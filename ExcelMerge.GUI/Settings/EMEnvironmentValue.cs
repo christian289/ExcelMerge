@@ -1,29 +1,26 @@
-﻿using System.Collections.Generic;
+﻿namespace ExcelMerge.GUI.Settings;
 
-namespace ExcelMerge.GUI.Settings
+public static class EMEnvironmentValue
 {
-    public static class EMEnvironmentValue
+    private static readonly Dictionary<string, string> ValueTable = new Dictionary<string, string>();
+
+    public static string Get(string key)
     {
-        private static readonly Dictionary<string, string> ValueTable = new Dictionary<string, string>();
+        if (ValueTable.ContainsKey(key))
+            return ValueTable[key];
 
-        public static string Get(string key)
+        return string.Empty;
+    }
+
+    public static void Set(string key, string value)
+    {
+        if (ValueTable.ContainsKey(key))
         {
-            if (ValueTable.ContainsKey(key))
-                return ValueTable[key];
-
-            return string.Empty;
+            ValueTable[key] = value;
         }
-
-        public static void Set(string key, string value)
+        else
         {
-            if (ValueTable.ContainsKey(key))
-            {
-                ValueTable[key] = value;
-            }
-            else
-            {
-                ValueTable.Add(key, value);
-            }
+            ValueTable.Add(key, value);
         }
     }
 }

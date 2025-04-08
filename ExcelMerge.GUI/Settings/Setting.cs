@@ -1,106 +1,101 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using YamlDotNet.Serialization;
-using SKCore.Runtime.Serialization;
+﻿using SKCore.Runtime.Serialization;
 
-namespace ExcelMerge.GUI.Settings
+namespace ExcelMerge.GUI.Settings;
+
+[Serializable]
+public class Setting<T> : SerializableBindableBase, ISetting<T> where T : Setting<T>
 {
-    [Serializable]
-    public class Setting<T> : SerializableBindableBase, ISetting<T> where T : Setting<T>
+    [YamlIgnore, IgnoreEqual]
+    public Setting<T> PreviousSetting { get; protected set; }
+
+    [NonSerialized]
+    protected bool isDirty;
+    [YamlIgnore, IgnoreEqual]
+    public bool IsDirty
     {
-        [YamlIgnore, IgnoreEqual]
-        public Setting<T> PreviousSetting { get; protected set; }
+        get { return isDirty; }
+        protected set { SetProperty(ref isDirty, value); }
+    }
 
-        [NonSerialized]
-        protected bool isDirty;
-        [YamlIgnore, IgnoreEqual]
-        public bool IsDirty
-        {
-            get { return isDirty; }
-            protected set { SetProperty(ref isDirty, value); }
-        }
+    public Setting()
+    {
+        PreviousSetting = DeepClone();
+    }
 
-        public Setting()
-        {
-            PreviousSetting = DeepClone();
-        }
+    public virtual T DeepClone()
+    {
+        return SerializationUtility.DeepClone(this as T);
+    }
 
-        public virtual T DeepClone()
-        {
-            return SerializationUtility.DeepClone(this as T);
-        }
+    public virtual bool Ensure(bool isChanged = false)
+    {
+        return isChanged;
+    }
 
-        public virtual bool Ensure(bool isChanged = false)
-        {
-            return isChanged;
-        }
+    public bool Equals(T other)
+    {
+        if (other == null)
+            return false;
 
-        public bool Equals(T other)
+        var properties = GetType().GetProperties().Where(p => !p.IsDefined(typeof(IgnoreEqualAttribute)));
+        foreach (var property in properties)
         {
-            if (other == null)
+            var selfValue = property.GetValue(this);
+            var otherValue = property.GetValue(other);
+
+            if ((selfValue == null) != (otherValue == null))
                 return false;
 
-            var properties = GetType().GetProperties().Where(p => !p.IsDefined(typeof(IgnoreEqualAttribute)));
+            if (selfValue == null && otherValue == null)
+                continue;
+
+            if (!selfValue.Equals(otherValue))
+                return false;
+        }
+
+        return true;
+    }
+
+    public override int GetHashCode()
+    {
+        var properties = GetType().GetProperties().Where(p => !p.IsDefined(typeof(IgnoreEqualAttribute)));
+        int hash = 17;
+
+        unchecked
+        {
             foreach (var property in properties)
             {
-                var selfValue = property.GetValue(this);
-                var otherValue = property.GetValue(other);
-
-                if ((selfValue == null) != (otherValue == null))
-                    return false;
-
-                if (selfValue == null && otherValue == null)
-                    continue;
-
-                if (!selfValue.Equals(otherValue))
-                    return false;
+                var value = property.GetValue(this);
+                if (value != null)
+                    hash = hash * 23 + value.GetHashCode();
             }
-
-            return true;
         }
 
-        public override int GetHashCode()
-        {
-            var properties = GetType().GetProperties().Where(p => !p.IsDefined(typeof(IgnoreEqualAttribute)));
-            int hash = 17;
+        return hash;
+    }
 
-            unchecked
-            {
-                foreach (var property in properties)
-                {
-                    var value = property.GetValue(this);
-                    if (value != null)
-                        hash = hash * 23 + value.GetHashCode();
-                }
-            }
+    public override bool Equals(object obj)
+    {
+        return Equals(obj as T);
+    }
 
-            return hash;
-        }
+    public virtual void Clean()
+    {
+        PreviousSetting = DeepClone();
 
-        public override bool Equals(object obj)
-        {
-            return Equals(obj as T);
-        }
+        IsDirty = false;
+    }
 
-        public virtual void Clean()
-        {
-            PreviousSetting = DeepClone();
+    protected override void OnPropertyChanging<TValue>(PropertyChangedEventArgs<TValue> args)
+    {
+        base.OnPropertyChanging(args);
+    }
 
-            IsDirty = false;
-        }
+    protected override void OnPropertyChanged<TValue>(PropertyChangedEventArgs<TValue> args)
+    {
+        base.OnPropertyChanged(args);
 
-        protected override void OnPropertyChanging<TValue>(PropertyChangedEventArgs<TValue> args)
-        {
-            base.OnPropertyChanging(args);
-        }
-
-        protected override void OnPropertyChanged<TValue>(PropertyChangedEventArgs<TValue> args)
-        {
-            base.OnPropertyChanged(args);
-
-            if (args.PropertyName != nameof(IsDirty))
-                IsDirty = !Equals(PreviousSetting);
-        }
+        if (args.PropertyName != nameof(IsDirty))
+            IsDirty = !Equals(PreviousSetting);
     }
 }

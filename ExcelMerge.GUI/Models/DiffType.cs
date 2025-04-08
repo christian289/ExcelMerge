@@ -1,8 +1,7 @@
-﻿namespace ExcelMerge.GUI.Models
+﻿namespace ExcelMerge.GUI.Models;
+
+public enum DiffType
 {
-    public enum DiffType
-    {
-        Source,
-        Dest,
-    }
+    Source,
+    Dest,
 }

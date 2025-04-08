@@ -1,9 +1,8 @@
-﻿namespace ExcelMerge.GUI.Commands
+﻿namespace ExcelMerge.GUI.Commands;
+
+public interface ICommand
 {
-    public interface ICommand
-    {
-        CommandLineOption Option { get; }
-        void Execute();
-        void ValidateOption();
-    }
+    CommandLineOption Option { get; }
+    void Execute();
+    void ValidateOption();
 }

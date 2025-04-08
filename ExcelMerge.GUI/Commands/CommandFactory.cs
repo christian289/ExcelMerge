@@ -1,18 +1,14 @@
-﻿namespace ExcelMerge.GUI.Commands
-{
-    public static class CommandFactory
-    {
-        public static ICommand Create(CommandLineOption option)
-        {
-            switch (option.MainCommand)
-            {
-                case CommandType.None:
-                    return new DiffCommand(option);
-                case CommandType.Diff:
-                    return new DiffCommand(option);
-            }
+﻿namespace ExcelMerge.GUI.Commands;
 
-            throw new Exceptions.ExcelMergeException(true, $"{option.MainCommand} is unkown command");
-        }
+public static class CommandFactory
+{
+    public static ICommand Create(CommandLineOption option)
+    {
+        return option.MainCommand switch
+        {
+            CommandType.None => new DiffCommand(option),
+            CommandType.Diff => new DiffCommand(option),
+            _ => throw new Exceptions.ExcelMergeException(true, $"{option.MainCommand} is unkown command"),
+        };
     }
 }

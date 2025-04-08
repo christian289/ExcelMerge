@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows;
-using System.Windows.Shapes;
-using System.Windows.Controls;
-using System.Windows.Input;
-using FastWpfGrid;
+﻿using FastWpfGrid;
 using ExcelMerge.GUI.Settings;
 
-namespace ExcelMerge.GUI.Views
+namespace ExcelMerge.GUI.Views.DiffViewEvent
 {
     class DiffViewEventDispatcher<TSender, TListener>
     {

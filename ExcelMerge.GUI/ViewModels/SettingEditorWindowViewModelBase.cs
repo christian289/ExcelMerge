@@ -1,56 +1,51 @@
-﻿using System;
-using System.Windows;
-using Prism.Mvvm;
-using Prism.Commands;
-using ExcelMerge.GUI.Settings;
+﻿using ExcelMerge.GUI.Settings;
 
-namespace ExcelMerge.GUI.ViewModels
+namespace ExcelMerge.GUI.ViewModels;
+
+public class SettingEditorWindowViewModelBase<T> : BindableBase where T : Setting<T>
 {
-    public class SettingEditorWindowViewModelBase<T> : BindableBase where T : Setting<T>
+    public delegate bool ValidateSettingDelegate(T setting, ref string error);
+
+    public ValidateSettingDelegate ValidateSettingCallback { get; set; }
+
+    private T setting;
+    public T Setting
     {
-        public delegate bool ValidateSettingDelegate(T setting, ref string error);
+        get { return setting; }
+        private set { SetProperty(ref setting, value); }
+    }
 
-        public ValidateSettingDelegate ValidateSettingCallback { get; set; }
+    public bool IsCancelled { get; private set; } = true;
 
-        private T setting;
-        public T Setting
+    public DelegateCommand<Window> CancelCommand { get; private set; }
+    public DelegateCommand<Window> DoneCommand { get; private set; }
+
+    public SettingEditorWindowViewModelBase(T setting)
+    {
+        Setting = setting.DeepClone();
+        Setting.Clean();
+
+        Setting = setting;
+
+        CancelCommand = new DelegateCommand<Window>((w) =>
         {
-            get { return setting; }
-            private set { SetProperty(ref setting, value); }
-        }
+            IsCancelled = true;
 
-        public bool IsCancelled { get; private set; } = true;
+            w.Close();
+        });
 
-        public DelegateCommand<Window> CancelCommand { get; private set; }
-        public DelegateCommand<Window> DoneCommand { get; private set; }
-
-        public SettingEditorWindowViewModelBase(T setting)
+        DoneCommand = new DelegateCommand<Window>((w) =>
         {
-            Setting = setting.DeepClone();
-            Setting.Clean();
-
-            Setting = setting;
-
-            CancelCommand = new DelegateCommand<Window>((w) =>
+            string error = string.Empty;
+            if (ValidateSettingCallback != null && !ValidateSettingCallback(Setting, ref error))
             {
-                IsCancelled = true;
+                MessageBox.Show(error);
+                return;
+            }
 
-                w.Close();
-            });
+            IsCancelled = false;
 
-            DoneCommand = new DelegateCommand<Window>((w) =>
-            {
-                string error = string.Empty;
-                if (ValidateSettingCallback != null && !ValidateSettingCallback(Setting, ref error))
-                {
-                    MessageBox.Show(error);
-                    return;
-                }
-
-                IsCancelled = false;
-
-                w.Close();
-            });
-        }
+            w.Close();
+        });
     }
 }

@@ -1,12 +1,9 @@
-﻿using System;
+﻿namespace ExcelMerge.GUI.Settings;
 
-namespace ExcelMerge.GUI.Settings
+public interface ISetting<T> : IEquatable<T>
 {
-    public interface ISetting<T> : IEquatable<T>
-    {
-        bool IsDirty { get; }
+    bool IsDirty { get; }
 
-        T DeepClone();
-        bool Ensure(bool isChanged = false);
-    }
+    T DeepClone();
+    bool Ensure(bool isChanged = false);
 }

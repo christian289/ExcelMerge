@@ -1,0 +1,64 @@
+﻿namespace ExcelMerge.Core;
+
+public class ExcelWorkbook
+{
+    public Dictionary<string, ExcelSheet> Sheets { get; private set; }
+
+    public ExcelWorkbook()
+    {
+        Sheets = new Dictionary<string, ExcelSheet>();
+    }
+
+    public static ExcelWorkbook Create(string path, ExcelSheetReadConfig config)
+    {
+        if (Path.GetExtension(path) == ".csv")
+            return CreateFromCsv(path, config);
+
+        if (Path.GetExtension(path) == ".tsv")
+            return CreateFromTsv(path, config);
+
+        var srcWb = WorkbookFactory.Create(path);
+        var wb = new ExcelWorkbook();
+        for (int i = 0; i < srcWb.NumberOfSheets; i++)
+        {
+            var srcSheet = srcWb.GetSheetAt(i);
+            wb.Sheets.Add(srcSheet.SheetName, ExcelSheet.Create(srcSheet, config));
+        }
+
+        return wb;
+    }
+
+    public static IEnumerable<string> GetSheetNames(string path)
+    {
+        if (Path.GetExtension(path) == ".csv")
+        {
+            yield return "csv";
+        }
+        else if (Path.GetExtension(path) == ".tsv")
+        {
+            yield return "tsv";
+        }
+        else
+        {
+            var wb = WorkbookFactory.Create(path);
+            for (int i = 0; i < wb.NumberOfSheets; i++)
+                yield return wb.GetSheetAt(i).SheetName;
+        }
+    }
+
+    private static ExcelWorkbook CreateFromCsv(string path, ExcelSheetReadConfig config)
+    {
+        ExcelWorkbook wb = new();
+        wb.Sheets.Add("csv", ExcelSheet.CreateFromCsv(path, config));
+
+        return wb;
+    }
+
+    private static ExcelWorkbook CreateFromTsv(string path, ExcelSheetReadConfig config)
+    {
+        ExcelWorkbook wb = new();
+        wb.Sheets.Add("tsv", ExcelSheet.CreateFromTsv(path, config));
+
+        return wb;
+    }
+}

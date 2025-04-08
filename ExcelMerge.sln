@@ -1,10 +1,7 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelMerge", "ExcelMerge\ExcelMerge.csproj", "{BFF4C33C-7395-4428-8587-AA22062E4A24}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExcelMerge.GUI", "ExcelMerge.GUI\ExcelMerge.GUI.csproj", "{9D45A825-0446-47AA-BEF2-C613B4DCFA66}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E9D6F03C-BFB5-4D31-A15E-7F789B4BBCC3} = {E9D6F03C-BFB5-4D31-A15E-7F789B4BBCC3}
@@ -27,16 +24,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SKCore", "SKCore\SKCore\SKC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SKCore.Wpf", "SKCore\SKCore.Wpf\SKCore.Wpf.csproj", "{5314F788-9FD8-4099-A254-4452835BF69E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelMerge.Core", "ExcelMerge.Core\ExcelMerge.Core.csproj", "{4B48F0FF-52B1-7B7A-6913-A7DDB306DD16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BFF4C33C-7395-4428-8587-AA22062E4A24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFF4C33C-7395-4428-8587-AA22062E4A24}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFF4C33C-7395-4428-8587-AA22062E4A24}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFF4C33C-7395-4428-8587-AA22062E4A24}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9D45A825-0446-47AA-BEF2-C613B4DCFA66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9D45A825-0446-47AA-BEF2-C613B4DCFA66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D45A825-0446-47AA-BEF2-C613B4DCFA66}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -65,6 +60,10 @@ Global
 		{5314F788-9FD8-4099-A254-4452835BF69E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5314F788-9FD8-4099-A254-4452835BF69E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5314F788-9FD8-4099-A254-4452835BF69E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B48F0FF-52B1-7B7A-6913-A7DDB306DD16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B48F0FF-52B1-7B7A-6913-A7DDB306DD16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B48F0FF-52B1-7B7A-6913-A7DDB306DD16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B48F0FF-52B1-7B7A-6913-A7DDB306DD16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

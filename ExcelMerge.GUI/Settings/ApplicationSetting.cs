@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.IO;
-using System.Windows.Media;
-using YamlDotNet.Serialization;
-using ExcelMerge.GUI.Styles;
+﻿using ExcelMerge.GUI.Styles;
+using Path = System.IO.Path;
 
 namespace ExcelMerge.GUI.Settings
 {
