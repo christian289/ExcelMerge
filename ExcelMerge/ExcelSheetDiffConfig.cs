@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace ExcelMerge;
 
-namespace ExcelMerge
+public class ExcelSheetDiffConfig
 {
-    public class ExcelSheetDiffConfig
-    {
-        public int SrcSheetIndex { get; set; }
-        public int DstSheetIndex { get; set; }
-        public int SrcHeaderIndex { get; set; }
-        public int DstHeaderIndex { get; set; }
-        public bool UseKeyColumn { get; set; }
-        public string KeyColumnName { get; set; }
-    }
+    public int SrcSheetIndex { get; set; }
+    public int DstSheetIndex { get; set; }
+    public int SrcHeaderIndex { get; set; }
+    public int DstHeaderIndex { get; set; }
+    public bool UseKeyColumn { get; set; }
+    public string KeyColumnName { get; set; }
 }

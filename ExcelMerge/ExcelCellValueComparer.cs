@@ -1,24 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace ExcelMerge;
 
-namespace ExcelMerge
+public class ExcelCellValueComparer : IEqualityComparer<ExcelCell>
 {
-    public class ExcelCellValueComparer : IEqualityComparer<ExcelCell>
+    public bool Equals(ExcelCell x, ExcelCell y)
     {
-        public bool Equals(ExcelCell x, ExcelCell y)
-        {
-            if (x == null || y == null)
-                return false;
+        if (x is null || y is null)
+            return false;
 
-            return x.Value.Equals(y.Value);
-        }
-
-        public int GetHashCode(ExcelCell obj)
-        {
-            return obj.Value.GetHashCode();
-        }
+        return x.Value.Equals(y.Value);
     }
+
+    public int GetHashCode(ExcelCell obj) => obj.Value.GetHashCode();
 }

@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace ExcelMerge;
 
-namespace ExcelMerge
+public enum ExcelColumnStatus
 {
-    public enum ExcelColumnStatus
-    {
-        None,
-        Deleted,
-        Inserted,
-    }
+    None,
+    Deleted,
+    Inserted,
 }

@@ -1,10 +1,9 @@
-﻿namespace ExcelMerge
+﻿namespace ExcelMerge;
+
+public enum ExcelCellStatus
 {
-    public enum ExcelCellStatus
-    {
-        None,
-        Modified,
-        Added,
-        Removed,
-    }
+    None,
+    Modified,
+    Added,
+    Removed,
 }

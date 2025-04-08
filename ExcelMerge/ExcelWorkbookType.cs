@@ -1,9 +1,8 @@
-﻿namespace ExcelMerge
+﻿namespace ExcelMerge;
+
+public enum ExcelWorkbookType
 {
-    public enum ExcelWorkbookType
-    {
-        None,
-        XLS,
-        XLSX,
-    }
+    None,
+    XLS,
+    XLSX,
 }
