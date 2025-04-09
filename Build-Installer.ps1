@@ -42,9 +42,8 @@ try {
     
     # 프로젝트 발행 (.NET 8.0 자체 포함)
     Write-Host "프로젝트 발행 중..." -ForegroundColor Cyan
-    dotnet publish "${ProjectPath}\ExcelMerge.GUI.csproj" -c Release -f net8.0-windows -r win-x64 --self-contained true -p:PublishSingleFile=true -o .\Build\Release
+    dotnet publish "${ProjectPath}\ExcelMerge.GUI.csproj" -c Release -f net8.0-windows -r win-x64 --self-contained true -p:PublishSingleFile=true -o .\Build\Release -v q
 
-    
     if ($LASTEXITCODE -ne 0) {
         Write-Error "프로젝트 발행 실패"
         exit 1
