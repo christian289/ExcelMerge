@@ -62,9 +62,9 @@ Section "ExcelMerge" SecMain
   File /r ".\ExcelMerge.GUI\bin\Release\net8.0-windows\*.*"
   File "ExcelMerge.GUI\app64.ico"
   
-  CreateDirectory "COMMONPROGRAMS\ExcelMerge"
-  CreateShortcut "COMMONPROGRAMS\ExcelMerge\ExcelMerge.lnk" "$INSTDIR\ExcelMerge.exe" "" "$INSTDIR\app64.ico"
-  CreateShortcut "COMMONPROGRAMS\ExcelMerge\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\app64.ico"
+  CreateDirectory "$SMPROGRAMS\ExcelMerge"
+  CreateShortcut "$SMPROGRAMS\ExcelMerge\ExcelMerge.lnk" "$INSTDIR\ExcelMerge.exe" "" "$INSTDIR\app64.ico"
+  CreateShortcut "$SMPROGRAMS\ExcelMerge\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\app64.ico"
   
   WriteRegStr HKLM "Software\ExcelMerge" "Install_Dir" "$INSTDIR"
   
@@ -84,8 +84,8 @@ Section "Uninstall"
   Delete "$INSTDIR\*.*"
   RMDir /r "$INSTDIR"
   
-  Delete "COMMONPROGRAMS\ExcelMerge\*.*"
-  RMDir "COMMONPROGRAMS\ExcelMerge"
+  Delete "$SMPROGRAMS\ExcelMerge\*.*"
+  RMDir "$SMPROGRAMS\ExcelMerge"
   
   Delete "$DESKTOP\ExcelMerge.lnk"
   
