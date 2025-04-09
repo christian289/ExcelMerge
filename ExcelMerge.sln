@@ -32,6 +32,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루�
 		Build-Installer.bat = Build-Installer.bat
 		Build-Installer.ps1 = Build-Installer.ps1
 		PackageNSIS.nsi = PackageNSIS.nsi
+		Transfer-Installer.bat = Transfer-Installer.bat
+		Transfer-Installer.ps1 = Transfer-Installer.ps1
 	EndProjectSection
 EndProject
 Global

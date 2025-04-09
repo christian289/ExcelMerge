@@ -69,9 +69,5 @@ if errorlevel 1 (
 
 echo [SUCCESS] 설치 프로그램 빌드가 완료되었습니다.
 
-REM === 결과물 복사 ===
-set "TARGET_DIR=\\ad.npixel.co.kr\1_Setup\34_ExcelMerge"
-REM copy /Y "%SOLUTION_PATH%\ExcelMerge-Setup.exe" "%TARGET_DIR%"
-
 endlocal
 exit /b 0
