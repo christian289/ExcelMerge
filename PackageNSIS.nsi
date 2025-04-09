@@ -52,7 +52,7 @@ Function CheckNetFramework
   DotNetEnd:
 FunctionEnd
 
-Section "ExcelMerge (Essential)" SecMain
+Section "ExcelMerge" SecMain
   SectionIn RO
   
   Call CheckNetFramework
@@ -60,10 +60,11 @@ Section "ExcelMerge (Essential)" SecMain
   SetOutPath "$INSTDIR"
   
   File /r "E:\github\ExcelMerge\ExcelMerge.GUI\bin\Release\net8.0-windows\*.*"
+  File "ExcelMerge.GUI\app64.ico"
   
   CreateDirectory "$SMPROGRAMS\ExcelMerge"
-  CreateShortcut "$SMPROGRAMS\ExcelMerge\ExcelMerge.lnk" "$INSTDIR\ExcelMerge.exe"
-  CreateShortcut "$SMPROGRAMS\ExcelMerge\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
+  CreateShortcut "$SMPROGRAMS\ExcelMerge\ExcelMerge.lnk" "$INSTDIR\ExcelMerge.exe" "" "$INSTDIR\app64.ico"
+  CreateShortcut "$SMPROGRAMS\ExcelMerge\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\app64.ico"
   
   WriteRegStr HKLM "Software\ExcelMerge" "Install_Dir" "$INSTDIR"
   
@@ -76,7 +77,7 @@ Section "ExcelMerge (Essential)" SecMain
 SectionEnd
 
 Section "Desktop ShortCut" SecDesktop
-  CreateShortcut "$DESKTOP\ExcelMerge.lnk" "$INSTDIR\ExcelMerge.exe"
+  CreateShortcut "$DESKTOP\ExcelMerge.lnk" "$INSTDIR\ExcelMerge.exe" "" "$INSTDIR\app64.ico"
 SectionEnd
 
 Section "Uninstall"

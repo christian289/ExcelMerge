@@ -1,3 +1,4 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
@@ -25,6 +26,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SKCore.Wpf", "SKCore\SKCore.Wpf\SKCore.Wpf.csproj", "{5314F788-9FD8-4099-A254-4452835BF69E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelMerge.Core", "ExcelMerge.Core\ExcelMerge.Core.csproj", "{4B48F0FF-52B1-7B7A-6913-A7DDB306DD16}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루션 항목", "{2A3A057F-5D22-31FD-628C-DF5EF75AEF1E}"
+	ProjectSection(SolutionItems) = preProject
+		Build-Installer.ps1 = Build-Installer.ps1
+		PackageNSIS.nsi = PackageNSIS.nsi
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
