@@ -1,12 +1,15 @@
 !include "MUI2.nsh"
 !include "FileFunc.nsh"
 
+!ifndef PRODUCT_VERSION
+  !define PRODUCT_VERSION "1.0.0"
+!endif
+
 !define PRODUCT_NAME "ExcelMerge"
-!define PRODUCT_VERSION "1.0.0"
 !define PRODUCT_PUBLISHER "NPIXEL"
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile ".\Build\Release\ExcelMerge-Setup.exe"
+OutFile ".\Build\Release\ExcelMerge-Setup-${PRODUCT_VERSION}.exe"
 Unicode True
 
 InstallDir "$PROGRAMFILES\ExcelMerge"
