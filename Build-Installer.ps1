@@ -33,7 +33,7 @@ try {
     
     # 프로젝트 빌드
     Write-Host "프로젝트 빌드 중..." -ForegroundColor Cyan
-    dotnet build -c Release
+    dotnet build -c Release --no-restore -noWarn:CS1591 -noWarn:CS1573 -noWarn:CS1572 -noWarn:CS0618 -noWarn:CS0219
     
     if ($LASTEXITCODE -ne 0) {
         Write-Error "프로젝트 빌드 실패"
@@ -42,7 +42,7 @@ try {
     
     # 프로젝트 발행 (.NET 8.0 자체 포함)
     Write-Host "프로젝트 발행 중..." -ForegroundColor Cyan
-    dotnet publish "${ProjectPath}\ExcelMerge.GUI.csproj" -c Release -f net8.0-windows -r win-x64 --self-contained true -p:PublishSingleFile=true -o .\Build\Release -v q
+    dotnet publish "${ProjectPath}\ExcelMerge.GUI.csproj" -c Release -f net8.0-windows -r win-x64 --self-contained true -p:PublishSingleFile=true -o .\Build\Release -v q --version-suffix 1.0.1 -noWarn:CS1591 -noWarn:CS1573 -noWarn:CS1572 -noWarn:CS0618 -noWarn:CS0219
 
     if ($LASTEXITCODE -ne 0) {
         Write-Error "프로젝트 발행 실패"
