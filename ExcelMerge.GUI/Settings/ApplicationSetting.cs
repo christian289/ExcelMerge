@@ -398,22 +398,16 @@ namespace ExcelMerge.GUI.Settings
         {
             var serializer = new SerializerBuilder().Build();
             var yml = serializer.Serialize(setting);
-            using (var sr = new StreamWriter(path))
-            {
-                sr.Write(yml);
-            }
+            using var sr = new StreamWriter(path);
+            sr.Write(yml);
         }
 
         private static ApplicationSetting Deserialize(string path)
         {
-            using (var sr = new StreamReader(path))
-            {
-                using (var input = new StringReader(sr.ReadToEnd()))
-                {
-                    var deserializer = new DeserializerBuilder().IgnoreUnmatchedProperties().Build();
-                    return deserializer.Deserialize<ApplicationSetting>(input);
-                }
-            }
+            using var sr = new StreamReader(path);
+            using var input = new StringReader(sr.ReadToEnd());
+            var deserializer = new DeserializerBuilder().IgnoreUnmatchedProperties().Build();
+            return deserializer.Deserialize<ApplicationSetting>(input);
         }
     }
 }

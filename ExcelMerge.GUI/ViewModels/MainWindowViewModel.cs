@@ -161,9 +161,9 @@ public class MainWindowViewModel : BindableBase
         DstPath = fs.ElementAtOrDefault(1).Trim();
     }
 
-    private void ChangeLanguage(string calture)
+    private void ChangeLanguage(string culture)
     {
-        App.Instance.Setting.Culture = calture;
+        App.Instance.Setting.Culture = culture;
         App.Instance.Setting.Save();
         App.Instance.UpdateResourceCulture();
     }
