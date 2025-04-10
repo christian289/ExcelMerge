@@ -64,7 +64,10 @@ Section "ExcelMerge" SecMain
   
   File /r ".\ExcelMerge.GUI\bin\Release\net8.0-windows\*.*"
   File "ExcelMerge.GUI\app64.ico"
-  
+
+  WriteRegStr HKLM "Software\ExcelMerge" "IconPath" "$INSTDIR\app64.ico"
+  WriteRegStr HKCR "Applications\ExcelMerge.exe\DefaultIcon" "" "$INSTDIR\app64.ico"
+
   CreateDirectory "$SMPROGRAMS\ExcelMerge"
   CreateShortcut "$SMPROGRAMS\ExcelMerge\ExcelMerge.lnk" "$INSTDIR\ExcelMerge.exe" "" "$INSTDIR\app64.ico"
   CreateShortcut "$SMPROGRAMS\ExcelMerge\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\app64.ico"
@@ -73,6 +76,7 @@ Section "ExcelMerge" SecMain
   
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ExcelMerge" "DisplayName" "ExcelMerge"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ExcelMerge" "UninstallString" '"$INSTDIR\Uninstall.exe"'
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ExcelMerge" "DisplayIcon" "$INSTDIR\app64.ico"
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ExcelMerge" "NoModify" 1
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ExcelMerge" "NoRepair" 1
   
@@ -94,4 +98,7 @@ Section "Uninstall"
   
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ExcelMerge"
   DeleteRegKey HKLM "Software\ExcelMerge"
+  DeleteRegKey HKCR "Applications\ExcelMerge.exe"
+
+  System::Call 'shell32.dll::SHChangeNotify(i, i, i, i) v (0x08000000, 0, 0, 0)'
 SectionEnd

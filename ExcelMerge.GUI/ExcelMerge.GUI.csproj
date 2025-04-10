@@ -9,8 +9,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>app.ico</ApplicationIcon>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <Version>1.1.0</Version>
     <Copyright>Copyright ©skanmera  2017</Copyright>
     <AssemblyName>ExcelMerge</AssemblyName>
   </PropertyGroup>

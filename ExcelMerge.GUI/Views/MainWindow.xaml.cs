@@ -12,7 +12,8 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-
+        var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+        Title = $"ExcelMerge-{version.Major}.{version.Minor}.{version.Build}";
         var host = new PowerShellHost();
         Console.PowerShellHost = host;
         host.Open();
