@@ -17,20 +17,25 @@ set "VERSION=%VERSION_MAJOR%.%VERSION_MINOR%.%BUILD_NUMBER%"
 REM === 프로젝트 파일에서 버전 정보 추출 시도 ===
 echo [INFO] 프로젝트 파일에서 버전 정보 추출 중...
 
-REM 프로젝트 파일에서 Version 태그를 찾아서 추출 (간단한 방법)
-findstr "<Version>" "%PROJECT_FILE%" > version_temp.txt
+REM 프로젝트 파일에서 Version 태그를 찾아서 추출
+(for /f "usebackq delims=" %%L in (`findstr "<Version>" "%PROJECT_FILE%"`) do (
+    set "line=%%L"
+    call set "line=%%line: =%%"
+    echo !line!
+)) > version_temp.txt
+type version_temp.txt
 if %errorlevel% equ 0 (
-    for /f "tokens=2 delims=<>" %%a in ('findstr "<Version>" "%PROJECT_FILE%"') do (
+    for /f "usebackq tokens=2 delims=<>" %%a in ("version_temp.txt") do (
         set "PROJECT_VERSION=%%a"
         echo [INFO] 프로젝트 버전: !PROJECT_VERSION!
         
         REM 버전 구성요소 분리(메이저.마이너)
-        for /f "tokens=1,2 delims=." %%b in ("!PROJECT_VERSION!") do (
+        for /f "tokens=1-2 delims=." %%b in ("!PROJECT_VERSION!") do (
             set "VERSION_MAJOR=%%b"
             set "VERSION_MINOR=%%c"
         )
         
-        set "VERSION=%VERSION_MAJOR%.%VERSION_MINOR%.%BUILD_NUMBER%"
+        set "VERSION=!VERSION_MAJOR!.!VERSION_MINOR!.%BUILD_NUMBER%"
     )
 )
 del version_temp.txt 2>nul
