@@ -1,5 +1,7 @@
-!include "MUI2.nsh"
+﻿!include "MUI2.nsh"
 !include "FileFunc.nsh"
+!include "LogicLib.nsh"
+!include "StrReplace.nsh"
 
 !ifndef PRODUCT_VERSION
   !define PRODUCT_VERSION "1.0.0"
@@ -12,7 +14,7 @@ Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
 OutFile ".\Build\Release\ExcelMerge-Setup-${PRODUCT_VERSION}.exe"
 Unicode True
 
-InstallDir "$PROGRAMFILES\ExcelMerge"
+InstallDir "$PROGRAMFILES64\ExcelMerge"
 InstallDirRegKey HKLM "Software\ExcelMerge" "Install_Dir"
 
 RequestExecutionLevel admin
@@ -55,6 +57,46 @@ Function CheckNetFramework
   DotNetEnd:
 FunctionEnd
 
+Function UpdateGitConfig
+  ReadEnvStr $0 "USERPROFILE"
+  StrCpy $0 "$0\.gitconfig"
+  IfFileExists $0 GitConfigExists GitConfigNotExists
+  
+  GitConfigExists:
+    FileOpen $1 $0 a
+    FileSeek $1 0 END
+    FileWrite $1 "[diff]$\r$\n"
+    FileWrite $1 "$\ttool = ExcelMerge$\r$\n"
+    StrCpy $2 '[difftool "ExcelMerge"]'
+    FileWrite $1 "$2$\r$\n"
+
+    ${StrReplaceV4} $3 "\" "\\" $INSTDIR
+    StrCpy $2 '$\tcmd = "$3\\ExcelMerge.exe" diff -s "$$LOCAL" -d "$$REMOTE" -c WinMerge -i -w -v -k$\r$\n'
+    FileWrite $1 $2
+
+    FileWrite $1 "[alias]$\r$\n"
+    FileWrite $1 "$\twindiff = difftool -g -y -t ExcelMerge$\r$\n"
+    FileClose $1
+    Goto GitConfigDone
+  
+  GitConfigNotExists:
+    FileOpen $1 $0 w
+    FileWrite $1 "[diff]$\r$\n"
+    FileWrite $1 "tool = ExcelMerge$\r$\n"
+    StrCpy $2 '[difftool "ExcelMerge"]'
+    FileWrite $1 "$2$\r$\n"
+    
+    ${StrReplaceV4} $3 "\" "\\" $INSTDIR
+    StrCpy $2 '$\tcmd = "$3\\ExcelMerge.exe" diff -s "$$LOCAL" -d "$$REMOTE" -c WinMerge -i -w -v -k$\r$\n'
+    FileWrite $1 $2
+
+    FileWrite $1 "[alias]$\r$\n"
+    FileWrite $1 "windiff = difftool -g -y -t ExcelMerge$\r$\n"
+    FileClose $1
+  
+  GitConfigDone:
+FunctionEnd
+
 Section "ExcelMerge" SecMain
   SectionIn RO
   
@@ -87,7 +129,43 @@ Section "Desktop ShortCut" SecDesktop
   CreateShortcut "$DESKTOP\ExcelMerge.lnk" "$INSTDIR\ExcelMerge.exe" "" "$INSTDIR\app64.ico"
 SectionEnd
 
+Section ".gitconfig Update" SecGitConfig
+  Call UpdateGitConfig
+SectionEnd
+
+LangString DESC_SecMain ${LANG_KOREAN} "ExcelMerge 프로그램을 설치합니다."
+LangString DESC_SecDesktop ${LANG_KOREAN} "바탕화면에 ExcelMerge 바로가기를 생성합니다."
+LangString DESC_SecGitConfig ${LANG_KOREAN} "Git에서 ExcelMerge를 diff 도구로 사용할 수 있도록 .gitconfig 파일을 업데이트합니다."
+
+LangString DESC_SecMain ${LANG_ENGLISH} "Installs the ExcelMerge program."
+LangString DESC_SecDesktop ${LANG_ENGLISH} "Creates a desktop shortcut for ExcelMerge."
+LangString DESC_SecGitConfig ${LANG_ENGLISH} "Updates .gitconfig file to use ExcelMerge as a diff tool for Git."
+
+LangString DESC_SecMain ${LANG_JAPANESE} "ExcelMerge プログラムをインストールします。"
+LangString DESC_SecDesktop ${LANG_JAPANESE} "デスクトップに ExcelMerge のショートカットを作成します。"
+LangString DESC_SecGitConfig ${LANG_JAPANESE} "Git で ExcelMerge を diff ツールとして使用するために .gitconfig ファイルを更新します。"
+
+LangString DESC_SecMain ${LANG_SIMPCHINESE} "安装 ExcelMerge 程序。"
+LangString DESC_SecDesktop ${LANG_SIMPCHINESE} "在桌面上创建 ExcelMerge 快捷方式。"
+LangString DESC_SecGitConfig ${LANG_SIMPCHINESE} "更新 .gitconfig 文件以将 ExcelMerge 用作 Git 的 diff 工具。"
+
+LangString DESC_SecMain ${LANG_TRADCHINESE} "安裝 ExcelMerge 程序。"
+LangString DESC_SecDesktop ${LANG_TRADCHINESE} "在桌面上創建 ExcelMerge 快捷方式。"
+LangString DESC_SecGitConfig ${LANG_TRADCHINESE} "更新 .gitconfig 文件以將 ExcelMerge 用作 Git 的 diff 工具。"
+
+!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+  !insertmacro MUI_DESCRIPTION_TEXT ${SecMain} $(DESC_SecMain)
+  !insertmacro MUI_DESCRIPTION_TEXT ${SecDesktop} $(DESC_SecDesktop)
+  !insertmacro MUI_DESCRIPTION_TEXT ${SecGitConfig} $(DESC_SecGitConfig)
+!insertmacro MUI_FUNCTION_DESCRIPTION_END
+
 Section "Uninstall"
+  ReadEnvStr $0 "USERPROFILE"
+  StrCpy $0 "$0\.gitconfig"
+  DeleteINISec $0 diff
+  DeleteINISec $0 'difftool "ExcelMerge"'
+  DeleteINISec $0 alias
+
   Delete "$INSTDIR\*.*"
   RMDir /r "$INSTDIR"
   
